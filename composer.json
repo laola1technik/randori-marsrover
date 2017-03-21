@@ -1,0 +1,20 @@
+{
+    "name": "codecop/CodingDojo-PHP",
+    "description": "Template project for a coding dojo using PHP.",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Peter Kofler",
+            "email": "peter.kofler@code-cop.org"
+        }
+    ],
+	"autoload-dev": {
+		"files": ["vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php"]
+	},
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*",
+        "hamcrest/hamcrest-php": "2.0.*"
+    }
+}
