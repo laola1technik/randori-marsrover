@@ -22,11 +22,16 @@ class Compass
 
     public function turnedRight()
     {
-        $this->directionIndex = ($this->directionIndex + 1) % $this->directionCount;
+        $this->turn(1);
     }
 
     public function turnedLeft()
     {
-        $this->directionIndex = ($this->directionIndex + $this->directionCount - 1) % $this->directionCount;
+        $this->turn($this->directionCount - 1);
+    }
+
+    private function turn($count)
+    {
+        $this->directionIndex = ($this->directionIndex + $count) % $this->directionCount;
     }
 }
