@@ -48,4 +48,30 @@ class CompassTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+
+    /**
+     * @test
+     * @dataProvider numberTurnsLeft
+     */
+    public function shouldTurnLeft($numberOfTurnsLeft, $expectedDirection)
+    {
+        $compass = new Compass();
+
+        for ($turn = 1; $turn <= $numberOfTurnsLeft; ++$turn) {
+            $compass->turnedLeft();
+        }
+
+        $direction = $compass->getDirection();
+        $this->assertInstanceOf($expectedDirection, $direction);
+    }
+
+    public function numberTurnsLeft()
+    {
+        return [
+            [1, "\\MarsRover\\Environment\\West"],
+            [2, "\\MarsRover\\Environment\\South"],
+            [3, "\\MarsRover\\Environment\\East"],
+            [4, "\\MarsRover\\Environment\\North"],
+        ];
+    }
 }
