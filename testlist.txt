@@ -1,0 +1,33 @@
+Anwendung
+Grid
+    - Startpunkt
+    - Position x/y
+    - repeat (Kugel nicht Pizza)
+Orientierung
+Richtung
+    - N
+    - S
+    - O
+    - W
+Drehen
+Bewegen
+    - vor
+    - zurück
+Marsrover
+Hindernisse
+    - erkennen
+Kommando
+Controlunit
+Translator Kommando -> Bewegung
+Eingabe als Text
+---
+Sprites
+Animations
+Sounds
+................
+
+Testliste Compass
+    - wohin schauen wir?
+    - rechts drehen
+    - links drehen
+    - jeweils 4 Richtungen

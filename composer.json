@@ -8,7 +8,12 @@
             "email": "peter.kofler@code-cop.org"
         }
     ],
-	"autoload-dev": {
+    "autoload": {
+        "psr-4": {
+            "MarsRover\\": "src/MarsRover/"
+        }
+    },
+    "autoload-dev": {
 		"files": ["vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php"]
 	},
     "require": {
