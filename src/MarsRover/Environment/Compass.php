@@ -10,7 +10,7 @@ class Compass
 
     public function __construct()
     {
-        $this->directions = [new North(), new East()];
+        $this->directions = [new North(), new East(), new South(), new West()];
         $this->directionIndex = 0;
     }
 
@@ -21,6 +21,6 @@ class Compass
 
     public function turnedRight()
     {
-        $this->directionIndex++;
+        $this->directionIndex = ($this->directionIndex+1) % count($this->directions);
     }
 }

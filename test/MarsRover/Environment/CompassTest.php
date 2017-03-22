@@ -42,6 +42,9 @@ class CompassTest extends \PHPUnit_Framework_TestCase
         return [
             [0, "\\MarsRover\\Environment\\North"],
             [1, "\\MarsRover\\Environment\\East"],
+            [2, "\\MarsRover\\Environment\\South"],
+            [3, "\\MarsRover\\Environment\\West"],
+            [4, "\\MarsRover\\Environment\\North"],
         ];
     }
 
