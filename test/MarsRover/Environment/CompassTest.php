@@ -19,7 +19,19 @@ class CompassTest extends \PHPUnit_Framework_TestCase
         $compass = new Compass();
         $direction = $compass->getDirection();
         $this->assertInstanceOf("\\MarsRover\\Environment\\North", $direction);
-        $this->assertEquals(new North(), $direction);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldPointEastAfterTurningRightOnce()
+    {
+        $compass = new Compass();
+
+        $compass->turnedRight();
+
+        $direction = $compass->getDirection();
+        $this->assertInstanceOf("\\MarsRover\\Environment\\East", $direction);
     }
 
 
