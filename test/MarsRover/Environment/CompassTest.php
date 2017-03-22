@@ -23,16 +23,26 @@ class CompassTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @dataProvider numberTurnsRight
      */
-    public function shouldPointEastAfterTurningRightOnce()
+    public function shouldTurnRight($numberOfTurnsRight, $expectedDirection)
     {
         $compass = new Compass();
 
-        $compass->turnedRight();
+        for ($turn = 1; $turn <= $numberOfTurnsRight; ++$turn) {
+            $compass->turnedRight();
+        }
 
         $direction = $compass->getDirection();
-        $this->assertInstanceOf("\\MarsRover\\Environment\\East", $direction);
+        $this->assertInstanceOf($expectedDirection, $direction);
     }
 
+    public function numberTurnsRight()
+    {
+        return [
+            [0, "\\MarsRover\\Environment\\North"],
+            [1, "\\MarsRover\\Environment\\East"],
+        ];
+    }
 
 }
