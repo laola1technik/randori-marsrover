@@ -6,8 +6,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     /**
      * TODO:
      * 2. test for navigation
-     *  + forward 4 Directions
-     *  + backward 4 Directions
+     *  + forward 2 Directions (s, w; paramterised?)
+     *  + backward 4 Directions (subtract vector)
      * 3. Wrapping
      * Open Question:
      * Was ist mit Karte oder Welt, wo kommen Hindernisse her, wer bestimmt die Größe
