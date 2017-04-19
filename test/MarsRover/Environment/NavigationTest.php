@@ -72,5 +72,21 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, $position->getY());
     }
 
+    /**
+     *
+     */
+    public function shouldUpdateToOneZeroAfterMovingForwardWhenFacingEast()
+    {
+        $navigation = new Navigation();
+        $navigation->turnedRight();
+
+        $navigation->movedForward();
+
+        /** @var Position $position */
+        $position = $navigation->getPosition();
+        $this->assertSame(1, $position->getX());
+        $this->assertSame(0, $position->getY());
+    }
+
 
 }

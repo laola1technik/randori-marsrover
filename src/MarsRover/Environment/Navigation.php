@@ -24,9 +24,10 @@ class Navigation
 
     public function movedForward()
     {
+        $vector = $this->getDirection()->getVector();
         $this->position = new Position(
-            $this->position->getX(),
-            $this->position->getY() + 1);
+            $this->position->getX() + $vector->getX(),
+            $this->position->getY() + $vector->getY());
     }
 
     public function turnedRight()
