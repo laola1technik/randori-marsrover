@@ -21,4 +21,12 @@ class Position
     {
         return $this->y;
     }
+
+    public function add($vector)
+    {
+        return new Position(
+            $this->getX() + $vector->getX(),
+            $this->getY() + $vector->getY()
+        );
+    }
 }

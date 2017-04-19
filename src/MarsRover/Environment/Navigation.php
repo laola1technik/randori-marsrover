@@ -25,9 +25,7 @@ class Navigation
     public function movedForward()
     {
         $vector = $this->getDirection()->getVector();
-        $this->position = new Position(
-            $this->position->getX() + $vector->getX(),
-            $this->position->getY() + $vector->getY());
+        $this->position = $this->position->add($vector);
     }
 
     public function turnedRight()
@@ -39,4 +37,6 @@ class Navigation
     {
         $this->compass->turnedLeft();
     }
+
+
 }
