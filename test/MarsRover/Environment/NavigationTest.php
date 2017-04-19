@@ -35,6 +35,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\MarsRover\Environment\North', $direction);
     }
 
+
+
     /**
      * @test
      */
@@ -49,4 +51,6 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(0, $position->getX());
         $this->assertSame(1, $position->getY());
     }
+
+
 }

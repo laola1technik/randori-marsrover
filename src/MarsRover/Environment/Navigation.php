@@ -4,10 +4,12 @@ namespace MarsRover\Environment;
 class Navigation
 {
     private $position;
+    private $compass;
 
     public function __construct()
     {
         $this->position = new Position(0, 0);
+        $this->compass = new Compass();
     }
 
     public function getPosition()
@@ -17,7 +19,7 @@ class Navigation
 
     public function getDirection()
     {
-        return new North();
+        return $this->compass->getDirection();
     }
 
     public function movedForward()
