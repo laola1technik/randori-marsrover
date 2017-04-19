@@ -22,7 +22,8 @@ class Navigation
 
     public function movedForward()
     {
-        $this->position = new Position();
-
+        $this->position = new Position(
+            $this->position->getX(),
+            $this->position->getY() + 1);
     }
 }
