@@ -6,10 +6,10 @@ class Position
     private $x;
     private $y;
 
-    public function __construct()
+    public function __construct($x, $y)
     {
-        $this->x = 0;
-        $this->y = 0;
+        $this->x = $x;
+        $this->y = $y;
     }
 
     public function getX()
