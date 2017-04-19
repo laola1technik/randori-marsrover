@@ -1,7 +1,7 @@
 <?php
 namespace MarsRover\Environment;
 
-class CoordinateSystem
+class Navigation
 {
     public function __construct()
     {
