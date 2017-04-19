@@ -1,7 +1,7 @@
 <?php
 namespace MarsRover\Environment;
 
-class North
+class North implements Direction
 {
 
     public function __construct()
