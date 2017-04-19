@@ -33,4 +33,9 @@ class Navigation
     {
         $this->compass->turnedRight();
     }
+
+    public function turnedLeft()
+    {
+        $this->compass->turnedLeft();
+    }
 }
