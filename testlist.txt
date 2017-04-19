@@ -1,15 +1,7 @@
 Anwendung
 Grid
-    - Startpunkt
-    - Position x/y
     - repeat (Kugel nicht Pizza)
 Orientierung
-Richtung
-    - N
-    - S
-    - O
-    - W
-Drehen
 Bewegen
     - vor
     - zurück
