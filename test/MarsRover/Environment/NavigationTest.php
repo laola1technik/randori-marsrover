@@ -24,4 +24,29 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(0, $position->getX());
         $this->assertSame(0, $position->getY());
     }
+
+    /**
+     * @test
+     */
+    public function shouldInitiallyFaceNorth()
+    {
+        $navigation = new Navigation();
+        $direction = $navigation->getDirection();
+        $this->assertInstanceOf('\MarsRover\Environment\North', $direction);
+    }
+
+    /**
+     *
+     */
+    public function shouldUpdateToZeroOneAfterMovingForwardWhenFacingNorth()
+    {
+        $navigation = new Navigation();
+
+        $navigation->movedForward();
+
+        /** @var Position $position */
+        $position = $navigation->getPosition();
+        $this->assertSame(0, $position->getX());
+        $this->assertSame(1, $position->getY());
+    }
 }

@@ -11,4 +11,9 @@ class Navigation
     {
         return new Position();
     }
+
+    public function getDirection()
+    {
+        return new North();
+    }
 }
