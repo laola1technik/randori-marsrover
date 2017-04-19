@@ -28,4 +28,9 @@ class Navigation
             $this->position->getX(),
             $this->position->getY() + 1);
     }
+
+    public function turnedRight()
+    {
+        $this->compass->turnedRight();
+    }
 }

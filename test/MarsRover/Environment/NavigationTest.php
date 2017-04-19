@@ -35,7 +35,16 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\MarsRover\Environment\North', $direction);
     }
 
-
+    /**
+     * @test
+     */
+    public function shouldFaceEastAfterTurningRight()
+    {
+        $navigation = new Navigation();
+        $navigation->turnedRight();
+        $direction = $navigation->getDirection();
+        $this->assertInstanceOf('\MarsRover\Environment\East', $direction);
+    }
 
     /**
      * @test
