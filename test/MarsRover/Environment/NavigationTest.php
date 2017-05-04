@@ -81,7 +81,9 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [0, new Position(0, 1)],
-            [1, new Position(1, 0)]
+            [1, new Position(1, 0)],
+            [2, new Position(0, -1)],
+            [3, new Position(-1, 0)]
         ];
     }
 
