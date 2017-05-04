@@ -1,10 +1,6 @@
 Anwendung
 Grid
     - repeat (Kugel nicht Pizza)
-Orientierung
-Bewegen
-    - vor
-    - zurück
 Marsrover
 Hindernisse
     - erkennen

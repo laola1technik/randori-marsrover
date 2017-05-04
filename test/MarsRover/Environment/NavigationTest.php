@@ -8,6 +8,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * 3. Wrapping
      * Open Question:
      * Was ist mit Karte oder Welt, wo kommen Hindernisse her, wer bestimmt die Größe
+     * Überlegung: Setup, Assert Position und Assert Direction herausziehen
      */
 
     /**
@@ -46,21 +47,17 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider coordinatesAfterNumberOfTurnsRightMovingForward
      */
-    public function shouldUpdateToCoordinateAfterMovingForwardWhenFacingDirection(
-        $numberOfTurnsRight,
-        $expectedCoordinate
-    ) {
+    public function shouldMoveForwardWhenFacingDirection($numberOfTurnsRight, $expectedPosition)
+    {
         $navigation = new Navigation(new Position(0, 0), new North());
-
         for ($i = 0; $i < $numberOfTurnsRight; $i++) {
             $navigation->turnedRight();
         }
 
         $navigation->movedForward();
 
-        /** @var Position $position */
         $position = $navigation->getPosition();
-        $this->assertEquals($expectedCoordinate, $position);
+        $this->assertEquals($expectedPosition, $position);
     }
 
     public function coordinatesAfterNumberOfTurnsRightMovingForward()
@@ -77,21 +74,17 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider coordinatesAfterNumberOfTurnsRightMovingBackward
      */
-    public function shouldUpdateToCoordinateAfterMovingBackwardWhenFacingDirection(
-        $numberOfTurnsRight,
-        $expectedCoordinate
-    ) {
+    public function shouldMoveBackwardWhenFacingDirection($numberOfTurnsRight, $expectedPosition)
+    {
         $navigation = new Navigation(new Position(0, 0), new North());
-
         for ($i = 0; $i < $numberOfTurnsRight; $i++) {
             $navigation->turnedRight();
         }
 
         $navigation->movedBackward();
 
-        /** @var Position $position */
         $position = $navigation->getPosition();
-        $this->assertEquals($expectedCoordinate, $position);
+        $this->assertEquals($expectedPosition, $position);
     }
 
     public function coordinatesAfterNumberOfTurnsRightMovingBackward()
@@ -109,7 +102,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldSetInitialPosition()
     {
-        $initialPosition = new Position(1,1);
+        $initialPosition = new Position(1, 1);
         $navigation = new Navigation($initialPosition, new North());
         $this->assertEquals($initialPosition, $navigation->getPosition());
     }
