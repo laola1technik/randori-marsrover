@@ -6,11 +6,11 @@ class CompassTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldInitiallyPointNorth()
+    public function shouldSetInitialDirection()
     {
-        $compass = new Compass(new North());
+        $compass = new Compass(new West());
         $direction = $compass->getDirection();
-        $this->assertInstanceOf("\\MarsRover\\Environment\\North", $direction);
+        $this->assertInstanceOf("\\MarsRover\\Environment\\West", $direction);
     }
 
     /**
