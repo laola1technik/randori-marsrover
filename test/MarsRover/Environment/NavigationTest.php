@@ -59,33 +59,30 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @dataProvider coordinatesAfterNumberOfTurnsRight
      */
-    public function shouldUpdateToZeroOneAfterMovingForwardWhenFacingNorth()
+    public function shouldUpdateToCoordinateAfterMovingForwardWhenFacingDirection($numberOfTurnsRight, $expectedCoordinate)
     {
         $navigation = new Navigation();
 
+        for ($i = 0; $i < $numberOfTurnsRight; $i++) {
+            $navigation->turnedRight();
+        }
+
         $navigation->movedForward();
+
 
         /** @var Position $position */
         $position = $navigation->getPosition();
-        $this->assertSame(0, $position->getX());
-        $this->assertSame(1, $position->getY());
+        $this->assertEquals($expectedCoordinate, $position);
     }
 
-    /**
-     * @test
-     */
-    public function shouldUpdateToOneZeroAfterMovingForwardWhenFacingEast()
+    public function coordinatesAfterNumberOfTurnsRight()
     {
-        $navigation = new Navigation();
-        $navigation->turnedRight();
-
-        $navigation->movedForward();
-
-        /** @var Position $position */
-        $position = $navigation->getPosition();
-        $this->assertSame(1, $position->getX());
-        $this->assertSame(0, $position->getY());
+        return [
+            [0, new Position(0, 1)],
+            [1, new Position(1, 0)]
+        ];
     }
 
 
