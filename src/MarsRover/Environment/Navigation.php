@@ -3,12 +3,15 @@ namespace MarsRover\Environment;
 
 class Navigation
 {
+    /**
+     * @var Position
+     */
     private $position;
     private $compass;
 
-    public function __construct()
+    public function __construct($initialPosition)
     {
-        $this->position = new Position(0, 0);
+        $this->position = $initialPosition;
         $this->compass = new Compass();
     }
 

@@ -10,24 +10,13 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * Was ist mit Karte oder Welt, wo kommen Hindernisse her, wer bestimmt die Größe
      */
 
-    /**
-     * @test
-     */
-    public function shouldInitiallyBeZeroZero()
-    {
-        $navigation = new Navigation();
-        /** @var Position $position */
-        $position = $navigation->getPosition();
-        $this->assertSame(0, $position->getX());
-        $this->assertSame(0, $position->getY());
-    }
 
     /**
      * @test
      */
     public function shouldInitiallyFaceNorth()
     {
-        $navigation = new Navigation();
+        $navigation = new Navigation(new Position(0, 0));
         $direction = $navigation->getDirection();
         $this->assertInstanceOf('\MarsRover\Environment\North', $direction);
     }
@@ -37,7 +26,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFaceEastAfterTurningRight()
     {
-        $navigation = new Navigation();
+        $navigation = new Navigation(new Position(0, 0));
         $navigation->turnedRight();
         $direction = $navigation->getDirection();
         $this->assertInstanceOf('\MarsRover\Environment\East', $direction);
@@ -48,7 +37,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFaceWestAfterTurningLeft()
     {
-        $navigation = new Navigation();
+        $navigation = new Navigation(new Position(0, 0));
         $navigation->turnedLeft();
         $direction = $navigation->getDirection();
         $this->assertInstanceOf('\MarsRover\Environment\West', $direction);
@@ -62,7 +51,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $numberOfTurnsRight,
         $expectedCoordinate
     ) {
-        $navigation = new Navigation();
+        $navigation = new Navigation(new Position(0, 0));
 
         for ($i = 0; $i < $numberOfTurnsRight; $i++) {
             $navigation->turnedRight();
@@ -93,7 +82,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $numberOfTurnsRight,
         $expectedCoordinate
     ) {
-        $navigation = new Navigation();
+        $navigation = new Navigation(new Position(0, 0));
 
         for ($i = 0; $i < $numberOfTurnsRight; $i++) {
             $navigation->turnedRight();
@@ -116,4 +105,13 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * @test
+     */
+    public function shouldSetInitialPosition()
+    {
+        $initialPosition = new Position(1,1);
+        $navigation = new Navigation($initialPosition);
+        $this->assertEquals($initialPosition, $navigation->getPosition());
+    }
 }
