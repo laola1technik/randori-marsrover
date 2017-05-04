@@ -6,7 +6,6 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     /**
      * TODO:
      * 2. test for navigation
-     *  + forward 2 Directions (s, w; paramterised?)
      *  + backward 4 Directions (subtract vector)
      * 3. Wrapping
      * Open Question:
@@ -59,7 +58,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @dataProvider coordinatesAfterNumberOfTurnsRight
+     * @dataProvider coordinatesAfterNumberOfTurnsRightMovingForward
      */
     public function shouldUpdateToCoordinateAfterMovingForwardWhenFacingDirection($numberOfTurnsRight, $expectedCoordinate)
     {
@@ -71,13 +70,12 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $navigation->movedForward();
 
-
         /** @var Position $position */
         $position = $navigation->getPosition();
         $this->assertEquals($expectedCoordinate, $position);
     }
 
-    public function coordinatesAfterNumberOfTurnsRight()
+    public function coordinatesAfterNumberOfTurnsRightMovingForward()
     {
         return [
             [0, new Position(0, 1)],
@@ -87,5 +85,33 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * @test
+     * @dataProvider coordinatesAfterNumberOfTurnsRightMovingBackward
+     */
+    public function shouldUpdateToCoordinateAfterMovingBackwardWhenFacingDirection($numberOfTurnsRight, $expectedCoordinate)
+    {
+        $navigation = new Navigation();
+
+        for ($i = 0; $i < $numberOfTurnsRight; $i++) {
+            $navigation->turnedRight();
+        }
+
+        $navigation->movedBackward();
+
+        /** @var Position $position */
+        $position = $navigation->getPosition();
+        $this->assertEquals($expectedCoordinate, $position);
+    }
+
+    public function coordinatesAfterNumberOfTurnsRightMovingBackward()
+    {
+        return [
+            [0, new Position(0, -1)],
+            [1, new Position(-1, 0)],
+            [2, new Position(0, 1)],
+            [3, new Position(1, 0)]
+        ];
+    }
 
 }

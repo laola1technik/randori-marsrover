@@ -22,11 +22,27 @@ class Position
         return $this->y;
     }
 
+    /**
+     * @param Vector $vector
+     * @return Position
+     */
     public function add($vector)
     {
         return new Position(
             $this->getX() + $vector->getX(),
             $this->getY() + $vector->getY()
+        );
+    }
+
+    /**
+     * @param Vector $vector
+     * @return Position
+     */
+    public function subtract($vector)
+    {
+        return new Position(
+            $this->getX() - $vector->getX(),
+            $this->getY() - $vector->getY()
         );
     }
 }

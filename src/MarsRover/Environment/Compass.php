@@ -4,6 +4,7 @@ namespace MarsRover\Environment;
 
 class Compass
 {
+    /** @var Direction[] */
     private $directions;
     private $directionCount;
     private $directionIndex;
