@@ -8,7 +8,7 @@ class CompassTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldInitiallyPointNorth()
     {
-        $compass = new Compass();
+        $compass = new Compass(new North());
         $direction = $compass->getDirection();
         $this->assertInstanceOf("\\MarsRover\\Environment\\North", $direction);
     }
@@ -19,7 +19,7 @@ class CompassTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldTurnRight($numberOfTurnsRight, $expectedDirection)
     {
-        $compass = new Compass();
+        $compass = new Compass(new North());
 
         for ($turn = 1; $turn <= $numberOfTurnsRight; ++$turn) {
             $compass->turnedRight();
@@ -47,7 +47,7 @@ class CompassTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldTurnLeft($numberOfTurnsLeft, $expectedDirection)
     {
-        $compass = new Compass();
+        $compass = new Compass(new North());
 
         for ($turn = 1; $turn <= $numberOfTurnsLeft; ++$turn) {
             $compass->turnedLeft();

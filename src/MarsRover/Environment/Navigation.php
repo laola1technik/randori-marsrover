@@ -12,7 +12,7 @@ class Navigation
     public function __construct($initialPosition)
     {
         $this->position = $initialPosition;
-        $this->compass = new Compass();
+        $this->compass = new Compass(new North());
     }
 
     public function getPosition()

@@ -9,11 +9,12 @@ class Compass
     private $directionCount;
     private $directionIndex;
 
-    public function __construct()
+    public function __construct($initialDirection)
     {
+        //TODO: Handle invalid initial Direction
         $this->directions = [new North(), new East(), new South(), new West()];
         $this->directionCount = count($this->directions);
-        $this->directionIndex = 0;
+        $this->directionIndex = array_search($initialDirection, $this->directions);
     }
 
     public function getDirection()
