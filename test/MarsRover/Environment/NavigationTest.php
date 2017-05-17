@@ -11,6 +11,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * Überlegung: Setup, Assert Position und Assert Direction herausziehen
      */
 
+    // ~~~~ DIRECTIONS ~~~~
+
     /**
      * @test
      */
@@ -27,7 +29,9 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function shouldFaceEastAfterTurningRight()
     {
         $navigation = new Navigation(new Position(0, 0), new North());
+
         $navigation->turnedRight();
+
         $direction = $navigation->getDirection();
         $this->assertInstanceOf('\MarsRover\Environment\East', $direction);
     }
@@ -38,64 +42,14 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function shouldFaceWestAfterTurningLeft()
     {
         $navigation = new Navigation(new Position(0, 0), new North());
+
         $navigation->turnedLeft();
+
         $direction = $navigation->getDirection();
         $this->assertInstanceOf('\MarsRover\Environment\West', $direction);
     }
 
-    /**
-     * @test
-     * @dataProvider coordinatesAfterNumberOfTurnsRightMovingForward
-     */
-    public function shouldMoveForwardWhenFacingDirection($numberOfTurnsRight, $expectedPosition)
-    {
-        $navigation = new Navigation(new Position(0, 0), new North());
-        for ($i = 0; $i < $numberOfTurnsRight; $i++) {
-            $navigation->turnedRight();
-        }
-
-        $navigation->movedForward();
-
-        $position = $navigation->getPosition();
-        $this->assertEquals($expectedPosition, $position);
-    }
-
-    public function coordinatesAfterNumberOfTurnsRightMovingForward()
-    {
-        return [
-            'North' => [0, new Position(0, 1)],
-            'East' => [1, new Position(1, 0)],
-            'South' => [2, new Position(0, -1)],
-            'West' => [3, new Position(-1, 0)]
-        ];
-    }
-
-    /**
-     * @test
-     * @dataProvider coordinatesAfterNumberOfTurnsRightMovingBackward
-     */
-    public function shouldMoveBackwardWhenFacingDirection($numberOfTurnsRight, $expectedPosition)
-    {
-        $navigation = new Navigation(new Position(0, 0), new North());
-        for ($i = 0; $i < $numberOfTurnsRight; $i++) {
-            $navigation->turnedRight();
-        }
-
-        $navigation->movedBackward();
-
-        $position = $navigation->getPosition();
-        $this->assertEquals($expectedPosition, $position);
-    }
-
-    public function coordinatesAfterNumberOfTurnsRightMovingBackward()
-    {
-        return [
-            'North' => [0, new Position(0, -1)],
-            'East' => [1, new Position(-1, 0)],
-            'South' => [2, new Position(0, 1)],
-            'West' => [3, new Position(1, 0)]
-        ];
-    }
+    // ~~~~ POSITIONS ~~~~
 
     /**
      * @test
@@ -105,5 +59,53 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $initialPosition = new Position(1, 1);
         $navigation = new Navigation($initialPosition, new North());
         $this->assertEquals($initialPosition, $navigation->getPosition());
+    }
+
+    /**
+     * @test
+     * @dataProvider positionAfterMovingForwardInDirection
+     */
+    public function shouldMoveForwardWhenFacingDirection($direction, $expectedPosition)
+    {
+        $navigation = new Navigation(new Position(0, 0), $direction);
+
+        $navigation->movedForward();
+
+        $position = $navigation->getPosition();
+        $this->assertEquals($expectedPosition, $position);
+    }
+
+    public function positionAfterMovingForwardInDirection()
+    {
+        return [
+            'North' => [new North(), new Position(0, 1)],
+            'East' => [new East(), new Position(1, 0)],
+            'South' => [new South(), new Position(0, -1)],
+            'West' => [new West(), new Position(-1, 0)]
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider positionAfterMovingBackwardInDirection
+     */
+    public function shouldMoveBackwardWhenFacingDirection($direction, $expectedPosition)
+    {
+        $navigation = new Navigation(new Position(0, 0), $direction);
+
+        $navigation->movedBackward();
+
+        $position = $navigation->getPosition();
+        $this->assertEquals($expectedPosition, $position);
+    }
+
+    public function positionAfterMovingBackwardInDirection()
+    {
+        return [
+            'North' => [new North(), new Position(0, -1)],
+            'East' => [new East(), new Position(-1, 0)],
+            'South' => [new South(), new Position(0, 1)],
+            'West' => [new West(), new Position(1, 0)]
+        ];
     }
 }
