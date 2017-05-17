@@ -35,4 +35,9 @@ class Position
             $this->y - $vector->getY()
         );
     }
+
+    public function moduloY($height)
+    {
+        return new Position($this->x, $this->y % $height);
+    }
 }
