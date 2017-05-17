@@ -13,6 +13,7 @@ class Navigation
     {
         $this->position = $initialPosition;
         $this->compass = new Compass($initialDirection);
+        //TODO: inject compass?
     }
 
     public function getPosition()

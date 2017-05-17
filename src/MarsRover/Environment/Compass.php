@@ -7,6 +7,7 @@ class Compass
     /** @var Direction[] */
     private $directions;
     private $directionCount;
+
     private $directionIndex;
 
     public function __construct($initialDirection)

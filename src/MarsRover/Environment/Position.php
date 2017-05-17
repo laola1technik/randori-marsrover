@@ -12,16 +12,6 @@ class Position
         $this->y = $y;
     }
 
-    public function getX()
-    {
-        return $this->x;
-    }
-
-    public function getY()
-    {
-        return $this->y;
-    }
-
     /**
      * @param Vector $vector
      * @return Position
@@ -29,8 +19,8 @@ class Position
     public function add($vector)
     {
         return new Position(
-            $this->getX() + $vector->getX(),
-            $this->getY() + $vector->getY()
+            $this->x + $vector->getX(),
+            $this->y + $vector->getY()
         );
     }
 
@@ -41,8 +31,8 @@ class Position
     public function subtract($vector)
     {
         return new Position(
-            $this->getX() - $vector->getX(),
-            $this->getY() - $vector->getY()
+            $this->x - $vector->getX(),
+            $this->y - $vector->getY()
         );
     }
 }
