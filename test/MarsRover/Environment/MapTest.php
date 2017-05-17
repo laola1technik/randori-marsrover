@@ -43,4 +43,14 @@ class MapTest extends \PHPUnit_Framework_TestCase
         $position = $map->getPositionOnMapFor(new Position(5, -1));
         $this->assertEquals(new Position(5, 19), $position);
     }
+
+    /**
+     * @test
+     */
+    public function shouldChangePositionWhenOutOfMapWidth()
+    {
+        $map = new Map(10, 20);
+        $position = $map->getPositionOnMapFor(new Position(10, 12));
+        $this->assertEquals(new Position(0, 12), $position);
+    }
 }
