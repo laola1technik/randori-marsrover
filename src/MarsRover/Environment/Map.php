@@ -32,6 +32,6 @@ class Map
 
     public function getPositionOnMapFor(Position $position)
     {
-        return $position->moduloY($this->height);
+        return $position->moduloY($this);
     }
 }

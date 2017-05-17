@@ -36,8 +36,14 @@ class Position
         );
     }
 
-    public function moduloY($height)
+    //TODO: Extract Interface 'Dimension'
+    //Map implements Dimension
+    //Module uses Type Dimension
+
+    //TODO: Test cases for X (Width)
+    //TODO: Performance optimization. Don't create a new Object every time
+    public function moduloY($map)
     {
-        return new Position($this->x, ($this->y + $height) % $height);
+        return new Position($this->x, ($this->y + $map->getHeight()) % $map->getHeight());
     }
 }
