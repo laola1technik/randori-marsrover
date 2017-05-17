@@ -33,4 +33,14 @@ class MapTest extends \PHPUnit_Framework_TestCase
         $position = $map->getPositionOnMapFor(new Position(5, 20));
         $this->assertEquals(new Position(5, 0), $position);
     }
+
+    /**
+     * @test
+     */
+    public function shouldChangePositionWhenBelowOfMapHeight()
+    {
+        $map = new Map(10, 20);
+        $position = $map->getPositionOnMapFor(new Position(5, -1));
+        $this->assertEquals(new Position(5, 19), $position);
+    }
 }

@@ -38,6 +38,6 @@ class Position
 
     public function moduloY($height)
     {
-        return new Position($this->x, $this->y % $height);
+        return new Position($this->x, ($this->y + $height) % $height);
     }
 }
