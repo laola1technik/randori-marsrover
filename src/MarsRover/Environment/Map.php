@@ -29,4 +29,9 @@ class Map
     {
         return $this->height;
     }
+
+    public function getPositionOnMapFor(Position $position)
+    {
+        return $position;
+    }
 }
