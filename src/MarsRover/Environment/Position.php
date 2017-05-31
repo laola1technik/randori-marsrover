@@ -41,12 +41,18 @@ class Position
     //Module uses Type Dimension
 
     //TODO: Test cases for X (Width)
-    //TODO: Performance optimization. Don't create a new Object every time
-    public function moduloY(Map $map)
+    public function wrap(Map $map)
     {
-        $validX = ($this->x + $map->getWidth()) % $map->getWidth();
-        $validY = ($this->y + $map->getHeight()) % $map->getHeight();
+        $width = $map->getWidth();
+        $height = $map->getHeight();
 
-        return new Position($validX, $validY);
+        $validX = ($this->x + $width) % $width;
+        $validY = ($this->y + $height) % $height;
+
+        if ($this->x !== $validX || $this->y !== $validY) {
+            return new Position($validX, $validY);
+        }
+
+        return $this;
     }
 }

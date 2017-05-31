@@ -26,6 +26,6 @@ class Map
 
     public function toValidPosition(Position $position)
     {
-        return $position->moduloY($this);
+        return $position->wrap($this);
     }
 }
