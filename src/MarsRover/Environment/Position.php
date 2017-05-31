@@ -42,8 +42,11 @@ class Position
 
     //TODO: Test cases for X (Width)
     //TODO: Performance optimization. Don't create a new Object every time
-    public function moduloY($map)
+    public function moduloY(Map $map)
     {
-        return new Position($this->x, ($this->y + $map->getHeight()) % $map->getHeight());
+        $validX = ($this->x + $map->getWidth()) % $map->getWidth();
+        $validY = ($this->y + $map->getHeight()) % $map->getHeight();
+
+        return new Position($validX, $validY);
     }
 }

@@ -57,7 +57,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test
+     * @test
      */
     public function shouldWrapPositionWhenOutOfMapWidth()
     {
