@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marko.markovic
- * Date: 17.05.2017
- * Time: 16:52
- */
 
 namespace MarsRover\Environment;
 
@@ -30,7 +24,7 @@ class Map
         return $this->height;
     }
 
-    public function getPositionOnMapFor(Position $position)
+    public function toValidPosition(Position $position)
     {
         return $position->moduloY($this);
     }

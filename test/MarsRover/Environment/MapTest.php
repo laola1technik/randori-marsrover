@@ -17,40 +17,56 @@ class MapTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldNotChangePositionWhenInMapSize()
+    public function shouldNotWrapPositionWhenInMapSize()
     {
+        $validX = 5;
+        $validY = 10;
         $map = new Map(10, 20);
-        $position = $map->getPositionOnMapFor(new Position(5, 10));
-        $this->assertEquals(new Position(5, 10), $position);
+
+        $position = $map->toValidPosition(new Position($validX, $validY));
+
+        $this->assertEquals(new Position($validX, $validY), $position);
     }
 
     /**
      * @test
      */
-    public function shouldChangePositionWhenOutOfMapHeight()
+    public function shouldWrapPositionWhenOutOfMapHeight()
     {
-        $map = new Map(10, 20);
-        $position = $map->getPositionOnMapFor(new Position(5, 20));
-        $this->assertEquals(new Position(5, 0), $position);
+        $width = 10;
+        $validX = 5;
+        $map = new Map($width, 20);
+
+        $position = $map->toValidPosition(new Position($validX, 20));
+
+        $this->assertEquals(new Position($validX, 0), $position);
     }
 
     /**
      * @test
      */
-    public function shouldChangePositionWhenBelowOfMapHeight()
+    public function shouldWrapPositionWhenBelowOfMapHeight()
     {
-        $map = new Map(10, 20);
-        $position = $map->getPositionOnMapFor(new Position(5, -1));
-        $this->assertEquals(new Position(5, 19), $position);
+        $width = 10;
+        $validX = 5;
+        $map = new Map($width, 20);
+
+        $position = $map->toValidPosition(new Position($validX, -1));
+
+        $this->assertEquals(new Position($validX, 19), $position);
     }
 
     /**
-     * @test
+     * test
      */
-    public function shouldChangePositionWhenOutOfMapWidth()
+    public function shouldWrapPositionWhenOutOfMapWidth()
     {
-        $map = new Map(10, 20);
-        $position = $map->getPositionOnMapFor(new Position(10, 12));
-        $this->assertEquals(new Position(0, 12), $position);
+        $height = 20;
+        $validY = 12;
+        $map = new Map(10, $height);
+
+        $position = $map->toValidPosition(new Position(10, $validY));
+
+        $this->assertEquals(new Position(0, $validY), $position);
     }
 }
