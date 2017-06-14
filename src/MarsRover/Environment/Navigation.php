@@ -4,13 +4,18 @@ namespace MarsRover\Environment;
 class Navigation
 {
     /**
+     * @var Map
+     */
+    private $map;
+    /**
      * @var Position
      */
     private $position;
     private $compass;
 
-    public function __construct($initialPosition, $initialDirection)
+    public function __construct($map, $initialPosition, $initialDirection)
     {
+        $this->map = $map;
         $this->position = $initialPosition;
         $this->compass = new Compass($initialDirection);
         //TODO: inject compass? (ask karl)
@@ -29,7 +34,8 @@ class Navigation
     public function movedForward()
     {
         $vector = $this->getDirection()->getVector();
-        $this->position = $this->position->add($vector);
+        $notValidatedPosition = $this->position->add($vector);
+        $this->position = $this->map->toValidPosition($notValidatedPosition);
     }
 
     public function movedBackward()
