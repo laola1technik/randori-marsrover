@@ -96,4 +96,18 @@ class MapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($hasObstacle);
     }
+
+    /**
+     * @test
+     */
+    public function shouldReportObstacleOnOccupiedPosition()
+    {
+        $occupiedPosition = new Position(5, 5);
+        $map = new Map(10, 10);
+        $map->addObstacle($occupiedPosition);
+
+        $hasObstacle = $map->isObstacleOn($occupiedPosition);
+
+        $this->assertTrue($hasObstacle);
+    }
 }

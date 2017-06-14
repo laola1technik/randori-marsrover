@@ -7,11 +7,13 @@ class Map implements Dimension
 {
     private $width;
     private $height;
+    private $obstacles;
 
     public function __construct($width, $height)
     {
         $this->width = $width;
         $this->height = $height;
+        $this->obstacles = [];
     }
 
     public function getWidth()
@@ -31,6 +33,11 @@ class Map implements Dimension
 
     public function isObstacleOn(Position $position)
     {
-        return false;
+        return in_array($position, $this->obstacles) !== false;
+    }
+
+    public function addObstacle($occupiedPosition)
+    {
+        array_push($this->obstacles, $occupiedPosition);
     }
 }
