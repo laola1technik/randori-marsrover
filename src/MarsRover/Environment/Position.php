@@ -36,14 +36,10 @@ class Position
         );
     }
 
-    //TODO: Extract Interface 'Dimension'
-    //Map implements Dimension
-    //Module uses Type Dimension
-
-    public function wrap(Map $map)
+    public function wrap(Dimension $dimension)
     {
-        $width = $map->getWidth();
-        $height = $map->getHeight();
+        $width = $dimension->getWidth();
+        $height = $dimension->getHeight();
 
         $validX = ($this->x + $width) % $width;
         $validY = ($this->y + $height) % $height;

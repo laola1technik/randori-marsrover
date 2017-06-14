@@ -3,7 +3,7 @@
 namespace MarsRover\Environment;
 
 
-class Map
+class Map implements Dimension
 {
     private $width;
     private $height;
