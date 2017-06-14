@@ -31,7 +31,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldWrapPositionWhenOutOfMapHeight()
+    public function shouldWrapPositionWhenAboveMapHeight()
     {
         $width = 10;
         $validX = 5;
@@ -45,7 +45,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldWrapPositionWhenBelowOfMapHeight()
+    public function shouldWrapPositionWhenBelowMapHeight()
     {
         $width = 10;
         $validX = 5;
@@ -59,7 +59,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldWrapPositionWhenOutOfMapWidth()
+    public function shouldWrapPositionWhenAboveMapWidth()
     {
         $height = 20;
         $validY = 12;
@@ -73,7 +73,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldWrapPositionWhenBelowOfMapWidth()
+    public function shouldWrapPositionWhenBelowMapWidth()
     {
         $height = 20;
         $validY = 12;
