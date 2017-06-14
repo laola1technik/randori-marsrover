@@ -40,7 +40,6 @@ class Position
     //Map implements Dimension
     //Module uses Type Dimension
 
-    //TODO: Test cases for X (Width)
     public function wrap(Map $map)
     {
         $width = $map->getWidth();

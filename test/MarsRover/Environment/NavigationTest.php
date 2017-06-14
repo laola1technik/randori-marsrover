@@ -3,14 +3,6 @@ namespace MarsRover\Environment;
 
 class NavigationTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * TODO:
-     * 3. Wrapping
-     * Open Question:
-     * Was ist mit Karte oder Welt, wo kommen Hindernisse her, wer bestimmt die Größe
-     * Überlegung: Setup, Assert Position und Assert Direction herausziehen
-     */
-
     // ~~~~ DIRECTIONS ~~~~
 
     /**

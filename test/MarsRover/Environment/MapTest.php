@@ -69,4 +69,18 @@ class MapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new Position(0, $validY), $position);
     }
+
+    /**
+     * @test
+     */
+    public function shouldWrapPositionWhenBelowOfMapWidth()
+    {
+        $height = 20;
+        $validY = 12;
+        $map = new Map(10, $height);
+
+        $position = $map->toValidPosition(new Position(-1, $validY));
+
+        $this->assertEquals(new Position(9, $validY), $position);
+    }
 }
