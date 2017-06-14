@@ -41,7 +41,8 @@ class Navigation
     public function movedBackward()
     {
         $vector = $this->getDirection()->getVector();
-        $this->position = $this->position->subtract($vector);
+        $notValidatedPosition = $this->position->subtract($vector);
+        $this->position = $this->map->toValidPosition($notValidatedPosition);
     }
 
     public function turnedRight()
