@@ -59,7 +59,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveForwardWhenFacingDirection($direction, $expectedPosition)
     {
-        $navigation = new Navigation(new Position(0, 0), $direction);
+        $navigation = new Navigation(new Position(1,1), $direction);
 
         $navigation->movedForward();
 
@@ -70,10 +70,10 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function positionAfterMovingForwardInDirection()
     {
         return [
-            'North' => [new North(), new Position(0, 1)],
-            'East' => [new East(), new Position(1, 0)],
-            'South' => [new South(), new Position(0, -1)],
-            'West' => [new West(), new Position(-1, 0)]
+            'North' => [new North(), new Position(1, 2)],
+            'East' => [new East(), new Position(2, 1)],
+            'South' => [new South(), new Position(1, 0)],
+            'West' => [new West(), new Position(0, 1)]
         ];
     }
 
@@ -83,7 +83,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveBackwardWhenFacingDirection($direction, $expectedPosition)
     {
-        $navigation = new Navigation(new Position(0, 0), $direction);
+        $navigation = new Navigation(new Position(1, 1), $direction);
 
         $navigation->movedBackward();
 
@@ -94,10 +94,10 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function positionAfterMovingBackwardInDirection()
     {
         return [
-            'North' => [new North(), new Position(0, -1)],
-            'East' => [new East(), new Position(-1, 0)],
-            'South' => [new South(), new Position(0, 1)],
-            'West' => [new West(), new Position(1, 0)]
+            'North' => [new North(), new Position(1, 0)],
+            'East' => [new East(), new Position(0, 1)],
+            'South' => [new South(), new Position(1, 2)],
+            'West' => [new West(), new Position(2, 1)]
         ];
     }
 }
