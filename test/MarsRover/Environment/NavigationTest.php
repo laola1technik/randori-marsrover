@@ -116,6 +116,11 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new Position(5, 0), $navigation->getPosition());
     }
+    /*
+        TODO: Map rausziehen
+        TODO: Diskussion Map mocken?
+        TODO: Reporting Obstacles, can we move?
+    */
 
     /**
      * @test
