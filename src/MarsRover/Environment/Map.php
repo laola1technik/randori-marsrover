@@ -28,4 +28,9 @@ class Map implements Dimension
     {
         return $position->wrap($this);
     }
+
+    public function isObstacleOn(Position $position)
+    {
+        return false;
+    }
 }

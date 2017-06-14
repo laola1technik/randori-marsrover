@@ -83,4 +83,17 @@ class MapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new Position(9, $validY), $position);
     }
+
+    /**
+     * @test
+     */
+    public function shouldNotReportObstacleOnEmptyPosition()
+    {
+        $emptyPosition = new Position(0, 0);
+        $map = new Map(10, 10);
+
+        $hasObstacle = $map->isObstacleOn($emptyPosition);
+
+        $this->assertFalse($hasObstacle);
+    }
 }
