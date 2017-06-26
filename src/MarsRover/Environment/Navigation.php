@@ -33,7 +33,11 @@ class Navigation
 
     public function canMoveForward()
     {
-        return false;
+        $vector = $this->getDirection()->getVector();
+        $notValidatedPosition = $this->position->add($vector);
+        $position = $this->map->toValidPosition($notValidatedPosition);
+
+        return !$this->map->isObstacleOn($position);
     }
 
     public function movedForward()

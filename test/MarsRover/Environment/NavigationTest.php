@@ -169,4 +169,16 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($canMove);
     }
+
+    /**
+     * @test
+     */
+    public function shouldCheckIfAbleToMoveForward()
+    {
+        $navigation = new Navigation($this->map, new Position(1, 1), new North());
+
+        $canMove = $navigation->canMoveForward();
+
+        $this->assertTrue($canMove);
+    }
 }
