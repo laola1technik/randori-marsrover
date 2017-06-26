@@ -124,7 +124,6 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Position(5, 0), $navigation->getPosition());
     }
     /*
-        TODO: Diskussion Map mocken?
         TODO: Reporting Obstacles, can we move?
     */
 
@@ -135,6 +134,22 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         $position = new Position(5, 0);
         $navigation = new Navigation($this->map, $position, new North());
+
+        $navigation->movedBackward();
+
+        $this->assertEquals(new Position(5, 9), $navigation->getPosition());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldWrapUsingMapPositionWhenMovingBackwardWithMock()
+    {
+        $map = $this->getMock('\MarsRover\Environment\Map', ['toValidPosition'], [0,0]);
+        $map->expects($this->any())->method('toValidPosition')->will($this->returnValue(new Position(5,9)));
+
+        $position = new Position(5, 0);
+        $navigation = new Navigation($map, $position, new North());
 
         $navigation->movedBackward();
 
