@@ -1,9 +1,9 @@
 Anwendung
-Grid
-    - repeat (Kugel nicht Pizza)
 Marsrover
+---
+TODO: überlegen Verantwortlichkeit von parsen, aktion selber durchführen, etc...
 Hindernisse
-    - erkennen
+    - erkennen, Bewegung abbrechen
 Kommando
 Controlunit
 Translator Kommando -> Bewegung

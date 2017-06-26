@@ -124,9 +124,6 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new Position(5, 0), $navigation->getPosition());
     }
-    /*
-        TODO: Reporting Obstacles, can we move?
-    */
 
     /**
      * @test
@@ -181,4 +178,9 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($canMove);
     }
+
+    /*
+     * TODO: 2 tests canMoveBackward
+     * TODO: check if obstacle is on wrapped position
+     */
 }
