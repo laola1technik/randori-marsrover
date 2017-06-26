@@ -51,9 +51,14 @@ class Navigation
 
     public function movedBackward()
     {
+        $this->position = $this->getBackwardPosition();
+    }
+
+    private function getBackwardPosition()
+    {
         $vector = $this->getDirection()->getVector();
         $notValidatedPosition = $this->position->subtract($vector);
-        $this->position = $this->map->toValidPosition($notValidatedPosition);
+        return $this->map->toValidPosition($notValidatedPosition);
     }
 
     public function turnedRight()
@@ -65,5 +70,4 @@ class Navigation
     {
         $this->compass->turnedLeft();
     }
-
 }
