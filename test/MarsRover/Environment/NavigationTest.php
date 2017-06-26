@@ -3,6 +3,16 @@ namespace MarsRover\Environment;
 
 class NavigationTest extends \PHPUnit_Framework_TestCase
 {
+    private $map;
+
+    /**
+     * @before
+     */
+    public function setupMap()
+    {
+        $this->map = new Map(10, 10);
+    }
+
     // ~~~~ DIRECTIONS ~~~~
 
     /**
@@ -10,7 +20,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldSetInitialDirection()
     {
-        $navigation = new Navigation(null, new Position(0, 0), new East());
+        $navigation = new Navigation($this->map, new Position(0, 0), new East());
         $direction = $navigation->getDirection();
         $this->assertInstanceOf('\MarsRover\Environment\East', $direction);
     }
@@ -20,7 +30,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFaceEastAfterTurningRight()
     {
-        $navigation = new Navigation(null, new Position(0, 0), new North());
+        $navigation = new Navigation($this->map, new Position(0, 0), new North());
 
         $navigation->turnedRight();
 
@@ -33,7 +43,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFaceWestAfterTurningLeft()
     {
-        $navigation = new Navigation(null, new Position(0, 0), new North());
+        $navigation = new Navigation($this->map, new Position(0, 0), new North());
 
         $navigation->turnedLeft();
 
@@ -49,7 +59,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function shouldSetInitialPosition()
     {
         $initialPosition = new Position(1, 1);
-        $navigation = new Navigation(null, $initialPosition, new North());
+        $navigation = new Navigation($this->map, $initialPosition, new North());
         $this->assertEquals($initialPosition, $navigation->getPosition());
     }
 
@@ -59,8 +69,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveForwardWhenFacingDirection($direction, $expectedPosition)
     {
-        $map = new Map(10, 10);
-        $navigation = new Navigation($map, new Position(1, 1), $direction);
+        $navigation = new Navigation($this->map, new Position(1, 1), $direction);
 
         $navigation->movedForward();
 
@@ -84,8 +93,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveBackwardWhenFacingDirection($direction, $expectedPosition)
     {
-        $map = new Map(10, 10);
-        $navigation = new Navigation($map, new Position(1, 1), $direction);
+        $navigation = new Navigation($this->map, new Position(1, 1), $direction);
 
         $navigation->movedBackward();
 
@@ -108,16 +116,14 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldWrapUsingMapPositionWhenMovingForward()
     {
-        $map = new Map(10, 10);
         $position = new Position(5, 9);
-        $navigation = new Navigation($map, $position, new North());
+        $navigation = new Navigation($this->map, $position, new North());
 
         $navigation->movedForward();
 
         $this->assertEquals(new Position(5, 0), $navigation->getPosition());
     }
     /*
-        TODO: Map rausziehen
         TODO: Diskussion Map mocken?
         TODO: Reporting Obstacles, can we move?
     */
@@ -127,9 +133,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldWrapUsingMapPositionWhenMovingBackward()
     {
-        $map = new Map(10, 10);
         $position = new Position(5, 0);
-        $navigation = new Navigation($map, $position, new North());
+        $navigation = new Navigation($this->map, $position, new North());
 
         $navigation->movedBackward();
 
