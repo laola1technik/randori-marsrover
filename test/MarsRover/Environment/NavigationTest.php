@@ -3,6 +3,7 @@ namespace MarsRover\Environment;
 
 class NavigationTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var Map $map */
     private $map;
 
     /**
@@ -145,8 +146,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldWrapUsingMapPositionWhenMovingBackwardWithMock()
     {
-        $map = $this->getMock('\MarsRover\Environment\Map', ['toValidPosition'], [0,0]);
-        $map->expects($this->any())->method('toValidPosition')->will($this->returnValue(new Position(5,9)));
+        $map = $this->getMock('\MarsRover\Environment\Map', ['toValidPosition'], [0, 0]);
+        $map->expects($this->any())->method('toValidPosition')->will($this->returnValue(new Position(5, 9)));
 
         $position = new Position(5, 0);
         $navigation = new Navigation($map, $position, new North());
@@ -154,5 +155,18 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $navigation->movedBackward();
 
         $this->assertEquals(new Position(5, 9), $navigation->getPosition());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCheckIfAbleToMoveForwardWhenFacingObstacle()
+    {
+        $this->map->addObstacle(new Position(1, 2));
+        $navigation = new Navigation($this->map, new Position(1, 1), new North());
+
+        $canMove = $navigation->canMoveForward();
+
+        $this->assertFalse($canMove);
     }
 }

@@ -31,6 +31,11 @@ class Navigation
         return $this->compass->getDirection();
     }
 
+    public function canMoveForward()
+    {
+        return false;
+    }
+
     public function movedForward()
     {
         $vector = $this->getDirection()->getVector();
@@ -54,4 +59,5 @@ class Navigation
     {
         $this->compass->turnedLeft();
     }
+
 }
