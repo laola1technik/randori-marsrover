@@ -33,18 +33,20 @@ class Navigation
 
     public function canMoveForward()
     {
+        $position = $this->getForwardPosition();
+        return !$this->map->isObstacleOn($position);
+    }
+
+    private function getForwardPosition()
+    {
         $vector = $this->getDirection()->getVector();
         $notValidatedPosition = $this->position->add($vector);
-        $position = $this->map->toValidPosition($notValidatedPosition);
-
-        return !$this->map->isObstacleOn($position);
+        return $this->map->toValidPosition($notValidatedPosition);
     }
 
     public function movedForward()
     {
-        $vector = $this->getDirection()->getVector();
-        $notValidatedPosition = $this->position->add($vector);
-        $this->position = $this->map->toValidPosition($notValidatedPosition);
+        $this->position = $this->getForwardPosition();
     }
 
     public function movedBackward()
