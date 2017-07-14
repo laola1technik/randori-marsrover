@@ -171,7 +171,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function obstacleInFrontOfRoverPosition()
     {
         return [
-           'middleOfMap' => [new Position(1, 2), new Position(1, 1)]
+           'middleOfMap' => [new Position(1, 2), new Position(1, 1)],
+           'edgeOfMap' => [new Position(1, 0), new Position(1, 9)]
         ];
     }
 
