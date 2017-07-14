@@ -3,6 +3,9 @@ namespace MarsRover\Environment;
 
 class NavigationTest extends \PHPUnit_Framework_TestCase
 {
+    const MAP_WIDTH = 15;
+    const MAP_HEIGHT = 14;
+
     /** @var Map $map */
     private $map;
 
@@ -11,7 +14,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function setupMap()
     {
-        $this->map = new Map(10, 10);
+        $this->map = new Map(self::MAP_WIDTH, self::MAP_HEIGHT);
     }
 
     // ~~~~ DIRECTIONS ~~~~
@@ -117,7 +120,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldWrapUsingMapPositionWhenMovingForward()
     {
-        $position = new Position(5, 9);
+        $position = new Position(5, self::MAP_HEIGHT - 1);
         $navigation = new Navigation($this->map, $position, new North());
 
         $navigation->movedForward();
@@ -135,7 +138,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $navigation->movedBackward();
 
-        $this->assertEquals(new Position(5, 9), $navigation->getPosition());
+        $this->assertEquals(new Position(5, self::MAP_HEIGHT - 1), $navigation->getPosition());
     }
 
     /**
@@ -144,14 +147,16 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function shouldWrapUsingMapPositionWhenMovingBackwardWithMock()
     {
         $map = $this->getMock('\MarsRover\Environment\Map', ['toValidPosition'], [0, 0]);
-        $map->expects($this->any())->method('toValidPosition')->will($this->returnValue(new Position(5, 9)));
+        $map->expects($this->any())->method('toValidPosition')->will(
+            $this->returnValue(new Position(5, self::MAP_HEIGHT - 1))
+        );
 
         $position = new Position(5, 0);
         $navigation = new Navigation($map, $position, new North());
 
         $navigation->movedBackward();
 
-        $this->assertEquals(new Position(5, 9), $navigation->getPosition());
+        $this->assertEquals(new Position(5, self::MAP_HEIGHT - 1), $navigation->getPosition());
     }
 
     /**
@@ -171,8 +176,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     public function obstacleInFrontOfRoverPosition()
     {
         return [
-           'middleOfMap' => [new Position(1, 2), new Position(1, 1)],
-           'edgeOfMap' => [new Position(1, 0), new Position(1, 9)]
+            'middleOfMap' => [new Position(1, 2), new Position(1, 1)],
+            'edgeOfMap' => [new Position(1, 0), new Position(1, self::MAP_HEIGHT - 1)]
         ];
     }
 
@@ -212,8 +217,4 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($canMove);
     }
-
-    /*
-     * TODO: check if obstacle is on wrapped position
-     */
 }
