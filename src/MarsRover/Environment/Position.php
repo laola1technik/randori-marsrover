@@ -26,6 +26,19 @@ class Position
 
     /**
      * @param Vector $vector
+     * @param Direction $direction
+     * @return Position
+     */
+    public function add2($vector, $direction)
+    {
+        return new Position(
+            $this->x + $vector->getX() * $direction->getDirectionSignum(),
+            $this->y + $vector->getY() * $direction->getDirectionSignum()
+        );
+    }
+
+    /**
+     * @param Vector $vector
      * @return Position
      */
     public function subtract($vector)
