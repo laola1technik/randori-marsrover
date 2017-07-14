@@ -191,8 +191,20 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($canMove);
     }
 
+    /**
+     * @test
+     */
+    public function shouldCheckIfAbleToMoveBackwardWhenFacingObstacle()
+    {
+        $this->map->addObstacle(new Position(1, 0));
+        $navigation = new Navigation($this->map, new Position(1, 1), new North());
+
+        $canMove = $navigation->canMoveBackward();
+
+        $this->assertFalse($canMove);
+    }
+
     /*
-     * TODO: 2 tests canMoveBackward
      * TODO: check if obstacle is on wrapped position
      */
 }
