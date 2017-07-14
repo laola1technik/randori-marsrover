@@ -1,7 +1,10 @@
 <?php
 namespace MarsRover\Environment;
 
-interface Direction
+/**
+ * Cardinal direction / Orientation the rover is facing.
+ */
+interface Orientation
 {
     /**
      * @return Vector

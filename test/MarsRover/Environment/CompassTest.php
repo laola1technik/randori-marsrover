@@ -6,18 +6,18 @@ class CompassTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldSetInitialDirection()
+    public function shouldSetInitialOrientation()
     {
         $compass = new Compass(new West());
-        $direction = $compass->getDirection();
-        $this->assertInstanceOf("\\MarsRover\\Environment\\West", $direction);
+        $orientation = $compass->getOrientation();
+        $this->assertInstanceOf("\\MarsRover\\Environment\\West", $orientation);
     }
 
     /**
      * @test
      * @dataProvider numberTurnsRight
      */
-    public function shouldTurnRight($numberOfTurnsRight, $expectedDirection)
+    public function shouldTurnRight($numberOfTurnsRight, $expectedOrientation)
     {
         $compass = new Compass(new North());
 
@@ -25,8 +25,8 @@ class CompassTest extends \PHPUnit_Framework_TestCase
             $compass->turnedRight();
         }
 
-        $direction = $compass->getDirection();
-        $this->assertInstanceOf($expectedDirection, $direction);
+        $orientation = $compass->getOrientation();
+        $this->assertInstanceOf($expectedOrientation, $orientation);
     }
 
     public function numberTurnsRight()
@@ -43,7 +43,7 @@ class CompassTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider numberTurnsLeft
      */
-    public function shouldTurnLeft($numberOfTurnsLeft, $expectedDirection)
+    public function shouldTurnLeft($numberOfTurnsLeft, $expectedOrientation)
     {
         $compass = new Compass(new North());
 
@@ -51,8 +51,8 @@ class CompassTest extends \PHPUnit_Framework_TestCase
             $compass->turnedLeft();
         }
 
-        $direction = $compass->getDirection();
-        $this->assertInstanceOf($expectedDirection, $direction);
+        $orientation = $compass->getOrientation();
+        $this->assertInstanceOf($expectedOrientation, $orientation);
     }
 
     public function numberTurnsLeft()

@@ -22,11 +22,11 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldSetInitialDirection()
+    public function shouldSetInitialOrientation()
     {
         $navigation = new Navigation($this->map, new Position(0, 0), new East());
-        $direction = $navigation->getDirection();
-        $this->assertInstanceOf('\MarsRover\Environment\East', $direction);
+        $orientation = $navigation->getOrientation();
+        $this->assertInstanceOf('\MarsRover\Environment\East', $orientation);
     }
 
     /**
@@ -38,8 +38,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $navigation->turnedRight();
 
-        $direction = $navigation->getDirection();
-        $this->assertInstanceOf('\MarsRover\Environment\East', $direction);
+        $orientation = $navigation->getOrientation();
+        $this->assertInstanceOf('\MarsRover\Environment\East', $orientation);
     }
 
     /**
@@ -51,8 +51,8 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
         $navigation->turnedLeft();
 
-        $direction = $navigation->getDirection();
-        $this->assertInstanceOf('\MarsRover\Environment\West', $direction);
+        $orientation = $navigation->getOrientation();
+        $this->assertInstanceOf('\MarsRover\Environment\West', $orientation);
     }
 
     // ~~~~ POSITIONS ~~~~
@@ -71,9 +71,9 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider positionAfterMovingForwardInDirection
      */
-    public function shouldMoveForwardWhenFacingDirection($direction, $expectedPosition)
+    public function shouldMoveForwardWhenFacingDirection($orientation, $expectedPosition)
     {
-        $navigation = new Navigation($this->map, new Position(1, 1), $direction);
+        $navigation = new Navigation($this->map, new Position(1, 1), $orientation);
 
         $navigation->movedForward();
 
@@ -95,9 +95,9 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider positionAfterMovingBackwardInDirection
      */
-    public function shouldMoveBackwardWhenFacingDirection($direction, $expectedPosition)
+    public function shouldMoveBackwardWhenFacingDirection($orientation, $expectedPosition)
     {
-        $navigation = new Navigation($this->map, new Position(1, 1), $direction);
+        $navigation = new Navigation($this->map, new Position(1, 1), $orientation);
 
         $navigation->movedBackward();
 

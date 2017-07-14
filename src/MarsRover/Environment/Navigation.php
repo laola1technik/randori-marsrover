@@ -13,11 +13,11 @@ class Navigation
     private $position;
     private $compass;
 
-    public function __construct($map, $initialPosition, $initialDirection)
+    public function __construct($map, $initialPosition, $initialOrientation)
     {
         $this->map = $map;
         $this->position = $initialPosition;
-        $this->compass = new Compass($initialDirection);
+        $this->compass = new Compass($initialOrientation);
         //TODO: inject compass? (ask karl)
     }
 
@@ -26,9 +26,9 @@ class Navigation
         return $this->position;
     }
 
-    public function getDirection()
+    public function getOrientation()
     {
-        return $this->compass->getDirection();
+        return $this->compass->getOrientation();
     }
 
     public function canMoveForward()
@@ -39,7 +39,7 @@ class Navigation
 
     private function getForwardPosition()
     {
-        $vector = $this->getDirection()->getVector();
+        $vector = $this->getOrientation()->getVector();
         $notValidatedPosition = $this->position->add($vector);
         return $this->map->toValidPosition($notValidatedPosition);
     }
@@ -57,7 +57,7 @@ class Navigation
 
     private function getBackwardPosition()
     {
-        $vector = $this->getDirection()->getVector();
+        $vector = $this->getOrientation()->getVector();
         $notValidatedPosition = $this->position->subtract($vector);
         return $this->map->toValidPosition($notValidatedPosition);
     }

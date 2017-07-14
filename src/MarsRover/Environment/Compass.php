@@ -4,26 +4,26 @@ namespace MarsRover\Environment;
 
 class Compass
 {
-    /** @var Direction[] */
-    private $directions;
-    private $directionCount;
+    /** @var Orientation[] */
+    private $orientations;
+    private $orientationCount;
 
-    private $directionIndex;
+    private $orientationIndex;
 
-    public function __construct($initialDirection)
+    public function __construct($initialOrientation)
     {
-        $this->directions = [new North(), new East(), new South(), new West()];
-        $this->directionCount = count($this->directions);
+        $this->orientations = [new North(), new East(), new South(), new West()];
+        $this->orientationCount = count($this->orientations);
 
-        $this->directionIndex = array_search($initialDirection, $this->directions);
-        if ($this->directionIndex === false) {
-            throw new \InvalidArgumentException("Initial direction");
+        $this->orientationIndex = array_search($initialOrientation, $this->orientations);
+        if ($this->orientationIndex === false) {
+            throw new \InvalidArgumentException("Initial orientation");
         }
     }
 
-    public function getDirection()
+    public function getOrientation()
     {
-        return $this->directions[$this->directionIndex];
+        return $this->orientations[$this->orientationIndex];
     }
 
     public function turnedRight()
@@ -33,11 +33,11 @@ class Compass
 
     public function turnedLeft()
     {
-        $this->turn($this->directionCount - 1);
+        $this->turn($this->orientationCount - 1);
     }
 
     private function turn($count)
     {
-        $this->directionIndex = ($this->directionIndex + $count) % $this->directionCount;
+        $this->orientationIndex = ($this->orientationIndex + $count) % $this->orientationCount;
     }
 }

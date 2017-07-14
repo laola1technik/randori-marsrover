@@ -1,7 +1,7 @@
 <?php
 namespace MarsRover\Environment;
 
-class North implements Direction
+class North implements Orientation
 {
     public function getVector()
     {
