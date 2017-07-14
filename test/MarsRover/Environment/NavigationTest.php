@@ -156,15 +156,23 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @dataProvider obstacleInFrontOfRoverPosition
      */
-    public function shouldCheckIfAbleToMoveForwardWhenFacingObstacle()
+    public function shouldCheckIfAbleToMoveForwardWhenFacingObstacle($obstaclePosition, $roverPosition)
     {
-        $this->map->addObstacle(new Position(1, 2));
-        $navigation = new Navigation($this->map, new Position(1, 1), new North());
+        $this->map->addObstacle($obstaclePosition);
+        $navigation = new Navigation($this->map, $roverPosition, new North());
 
         $canMove = $navigation->canMoveForward();
 
         $this->assertFalse($canMove);
+    }
+
+    public function obstacleInFrontOfRoverPosition()
+    {
+        return [
+           'middleOfMap' => [new Position(1, 2), new Position(1, 1)]
+        ];
     }
 
     /**
