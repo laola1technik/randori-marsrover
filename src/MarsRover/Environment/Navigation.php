@@ -44,6 +44,7 @@ class Navigation
         return $this->map->toValidPosition($notValidatedPosition);
     }
 
+    // TODO: Don't use moved Forward if not allowed, Check first and report (not here) by throwing exception.
     public function movedForward()
     {
         $this->position = $this->getForwardPosition();

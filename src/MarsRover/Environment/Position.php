@@ -6,6 +6,7 @@ class Position
     private $x;
     private $y;
 
+    //TODO: Coordinates might lead to error -> rethink: X, Y?
     public function __construct($x, $y)
     {
         $this->x = $x;
@@ -29,6 +30,8 @@ class Position
      * @param Direction $direction
      * @return Position
      */
+
+    //TODO: Remove Duplication of Forward/Backward in Position and Navigation using Direction.
     public function add2($vector, $direction)
     {
         return new Position(
