@@ -75,7 +75,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         $navigation = new Navigation($this->map, new Position(1, 1), $orientation);
 
-        $navigation->movedForward();
+        $navigation->moved(new Forward());
 
         $position = $navigation->getPosition();
         $this->assertEquals($expectedPosition, $position);
@@ -99,7 +99,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         $navigation = new Navigation($this->map, new Position(1, 1), $orientation);
 
-        $navigation->movedBackward();
+        $navigation->moved(new Backward());
 
         $position = $navigation->getPosition();
         $this->assertEquals($expectedPosition, $position);
@@ -123,7 +123,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $position = new Position(5, self::MAP_HEIGHT - 1);
         $navigation = new Navigation($this->map, $position, new North());
 
-        $navigation->movedForward();
+        $navigation->moved(new Forward());
 
         $this->assertEquals(new Position(5, 0), $navigation->getPosition());
     }
@@ -136,7 +136,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $position = new Position(5, 0);
         $navigation = new Navigation($this->map, $position, new North());
 
-        $navigation->movedBackward();
+        $navigation->moved(new Backward());
 
         $this->assertEquals(new Position(5, self::MAP_HEIGHT - 1), $navigation->getPosition());
     }
@@ -154,7 +154,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $position = new Position(5, 0);
         $navigation = new Navigation($map, $position, new North());
 
-        $navigation->movedBackward();
+        $navigation->moved(new Backward());
 
         $this->assertEquals(new Position(5, self::MAP_HEIGHT - 1), $navigation->getPosition());
     }

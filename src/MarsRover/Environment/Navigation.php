@@ -48,15 +48,6 @@ class Navigation
     }
 
     // TODO: Don't use moved Forward if not allowed, Check first and report (not here) by throwing exception.
-    public function movedForward()
-    {
-        $this->moved(new Forward());
-    }
-
-    public function movedBackward()
-    {
-        $this->moved(new Backward());
-    }
 
     public function moved(Direction $direction)
     {
