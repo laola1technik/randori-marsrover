@@ -15,18 +15,6 @@ class Position
 
     /**
      * @param Vector $vector
-     * @return Position
-     */
-    public function plus($vector)
-    {
-        return new Position(
-            $this->x + $vector->getX(),
-            $this->y + $vector->getY()
-        );
-    }
-
-    /**
-     * @param Vector $vector
      * @param Direction $direction
      * @return Position
      */
@@ -37,18 +25,6 @@ class Position
         return new Position(
             $this->x + $vector->getX() * $direction->getDirectionSignum(),
             $this->y + $vector->getY() * $direction->getDirectionSignum()
-        );
-    }
-
-    /**
-     * @param Vector $vector
-     * @return Position
-     */
-    public function minus($vector)
-    {
-        return new Position(
-            $this->x - $vector->getX(),
-            $this->y - $vector->getY()
         );
     }
 
