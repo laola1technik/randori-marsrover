@@ -226,4 +226,16 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
             'edgeOfMap' => [new Position(1, self::MAP_HEIGHT - 1), new Position(1, 0)]
         ];
     }
+
+    /**
+     * @test
+     * @expectedException \LogicException
+     */
+    public function shouldFailIfUnableToMoveForward()
+    {
+        $this->map->addObstacle(new Position(1, 2));
+        $navigation = new Navigation($this->map, new Position(1, 1), new North());
+
+        $navigation->moved(new Forward());
+    }
 }

@@ -37,10 +37,11 @@ class Navigation
         return !$this->map->isObstacleOn($position);
     }
 
-    // TODO: Don't use moved Forward if not allowed, Check first and report (not here) by throwing exception.
-
     public function moved(Direction $direction)
     {
+        if (!$this->canMove($direction)) {
+            throw new \LogicException("Obstacle is blocking your way :(");
+        }
         $this->position = $this->getMovePosition($direction);
     }
 
