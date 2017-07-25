@@ -31,16 +31,6 @@ class Navigation
         return $this->compass->getOrientation();
     }
 
-    public function canMoveForward()
-    {
-        return $this->canMove(new Forward());
-    }
-
-    public function canMoveBackward()
-    {
-        return $this->canMove(new Backward());
-    }
-
     public function canMove(Direction $direction)
     {
         $position = $this->getMovePosition($direction);

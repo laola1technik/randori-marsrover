@@ -168,7 +168,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->map->addObstacle($obstaclePosition);
         $navigation = new Navigation($this->map, $roverPosition, new North());
 
-        $canMove = $navigation->canMoveForward();
+        $canMove = $navigation->canMove(new Forward());
 
         $this->assertFalse($canMove);
     }
@@ -188,7 +188,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         $navigation = new Navigation($this->map, new Position(1, 1), new North());
 
-        $canMove = $navigation->canMoveForward();
+        $canMove = $navigation->canMove(new Forward());
 
         $this->assertTrue($canMove);
     }
@@ -200,7 +200,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         $navigation = new Navigation($this->map, new Position(1, 1), new North());
 
-        $canMove = $navigation->canMoveBackward();
+        $canMove = $navigation->canMove(new Backward());
 
         $this->assertTrue($canMove);
     }
@@ -214,7 +214,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $this->map->addObstacle($obstaclePosition);
         $navigation = new Navigation($this->map, $roverPosition, new North());
 
-        $canMove = $navigation->canMoveBackward();
+        $canMove = $navigation->canMove(new Backward());
 
         $this->assertFalse($canMove);
     }
