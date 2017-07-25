@@ -17,7 +17,7 @@ class Position
      * @param Vector $vector
      * @return Position
      */
-    public function add($vector)
+    public function plus($vector)
     {
         return new Position(
             $this->x + $vector->getX(),
@@ -32,7 +32,7 @@ class Position
      */
 
     //TODO: Remove Duplication of Forward/Backward in Position and Navigation using Direction.
-    public function add2($vector, $direction)
+    public function add($vector, $direction)
     {
         return new Position(
             $this->x + $vector->getX() * $direction->getDirectionSignum(),
@@ -44,7 +44,7 @@ class Position
      * @param Vector $vector
      * @return Position
      */
-    public function subtract($vector)
+    public function minus($vector)
     {
         return new Position(
             $this->x - $vector->getX(),

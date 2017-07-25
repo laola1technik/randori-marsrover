@@ -40,7 +40,7 @@ class Navigation
     private function getForwardPosition()
     {
         $vector = $this->getOrientation()->getVector();
-        $notValidatedPosition = $this->position->add($vector);
+        $notValidatedPosition = $this->position->plus($vector);
         return $this->map->toValidPosition($notValidatedPosition);
     }
 
@@ -59,9 +59,10 @@ class Navigation
     private function getBackwardPosition()
     {
         $vector = $this->getOrientation()->getVector();
-        $notValidatedPosition = $this->position->subtract($vector);
+        $notValidatedPosition = $this->position->minus($vector);
         return $this->map->toValidPosition($notValidatedPosition);
     }
+
 
     public function movedBackward()
     {
