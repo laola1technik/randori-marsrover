@@ -33,28 +33,37 @@ class Navigation
 
     public function canMoveForward()
     {
-        $position = $this->getMovePosition(new Forward());
+        return $this->canMove(new Forward());
+    }
+
+    public function canMoveBackward()
+    {
+        return $this->canMove(new Backward());
+    }
+
+    public function canMove(Direction $direction)
+    {
+        $position = $this->getMovePosition($direction);
         return !$this->map->isObstacleOn($position);
     }
 
     // TODO: Don't use moved Forward if not allowed, Check first and report (not here) by throwing exception.
     public function movedForward()
     {
-        $this->position = $this->getMovePosition(new Forward());
-    }
-
-    public function canMoveBackward()
-    {
-        $position = $this->getMovePosition(new Backward());
-        return !$this->map->isObstacleOn($position);
+        $this->moved(new Forward());
     }
 
     public function movedBackward()
     {
-        $this->position = $this->getMovePosition(new Backward());
+        $this->moved(new Backward());
     }
 
-    private function getMovePosition($direction)
+    public function moved(Direction $direction)
+    {
+        $this->position = $this->getMovePosition($direction);
+    }
+
+    private function getMovePosition(Direction $direction)
     {
         $vector = $this->getOrientation()->getVector();
         $notValidatedPosition = $this->position->add($vector, $direction);

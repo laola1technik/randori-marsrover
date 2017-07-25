@@ -13,14 +13,7 @@ class Position
         $this->y = $y;
     }
 
-    /**
-     * @param Vector $vector
-     * @param Direction $direction
-     * @return Position
-     */
-
-    //TODO: Remove Duplication of Forward/Backward in Position and Navigation using Direction.
-    public function add($vector, $direction)
+    public function add(Vector $vector, Direction $direction)
     {
         return new Position(
             $this->x + $vector->getX() * $direction->getDirectionSignum(),
