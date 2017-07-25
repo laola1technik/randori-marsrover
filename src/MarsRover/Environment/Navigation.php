@@ -13,13 +13,11 @@ class Navigation
     private $position;
     private $compass;
 
-    public function __construct($map, $initialPosition, $initialOrientation, $compass)
+    public function __construct($map, $initialPosition, $compass)
     {
         $this->map = $map;
         $this->position = $initialPosition;
-        $this->compass = new Compass($initialOrientation);
-        //TODO: inject compass?
-        //$this->compass = $compass;
+        $this->compass = $compass;
     }
 
     public function getPosition()
