@@ -1,26 +1,27 @@
 <?php
 namespace MarsRover\Control;
 
-use MarsRover\Control\Commands\Forward;
+use MarsRover\Control\Commands\BackwardCommand;
 use MarsRover\Control\Commands\ForwardCommand;
 
 class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
-     * @dataProvider translatedCommand
+     * @dataProvider lettersAndTranslatedCommands
      */
-    public function shouldTranslateFIntoForwardCommand($input, $expectedCommand)
+    public function shouldTranslateLetterIntoCommand($letter, $expectedCommand)
     {
         $commandTranslator = new CommandTranslator();
-        $command = $commandTranslator->translate($input);
+        $command = $commandTranslator->translate($letter);
         $this->assertInstanceOf($expectedCommand, $command);
     }
 
-    public function translatedCommand()
+    public function lettersAndTranslatedCommands()
     {
         return [
-            'Forward' => ['f', ForwardCommand::class]
+            'Forward' => ['f', ForwardCommand::class],
+            'Backward' => ['b', BackwardCommand::class]
         ];
     }
 }

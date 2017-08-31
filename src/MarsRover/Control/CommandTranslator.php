@@ -1,6 +1,7 @@
 <?php
 namespace MarsRover\Control;
 
+use MarsRover\Control\Commands\BackwardCommand;
 use MarsRover\Control\Commands\ForwardCommand;
 
 class CommandTranslator
@@ -9,8 +10,12 @@ class CommandTranslator
     {
     }
 
-    public function translate($input)
+    public function translate($letter)
     {
-        return new ForwardCommand();
+        if ($letter === 'f') {
+            return new ForwardCommand();
+        }
+
+        return new BackwardCommand();
     }
 }
