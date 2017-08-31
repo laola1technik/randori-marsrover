@@ -8,14 +8,19 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
+     * @dataProvider translatedCommand
      */
-    public function shouldTranslateFIntoForwardCommand()
+    public function shouldTranslateFIntoForwardCommand($input, $expectedCommand)
     {
-        $input = "f";
         $commandTranslator = new CommandTranslator();
-
         $command = $commandTranslator->translate($input);
+        $this->assertInstanceOf($expectedCommand, $command);
+    }
 
-        $this->assertInstanceOf(ForwardCommand::class, $command);
+    public function translatedCommand()
+    {
+        return [
+            'Forward' => ['f', ForwardCommand::class]
+        ];
     }
 }
