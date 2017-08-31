@@ -28,4 +28,15 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
             'Right' => ['r', RightCommand::class]
         ];
     }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function shouldFailIfUnableToTranslateLetter()
+    {
+        $invalidLetter = 'p';
+        $commandTranslator = new CommandTranslator();
+        $commandTranslator->translate($invalidLetter);
+    }
 }

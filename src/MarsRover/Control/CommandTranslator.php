@@ -22,6 +22,10 @@ class CommandTranslator
 
     public function translate($letter)
     {
+        if(array_key_exists($letter, $this->letterToCommandMap) === false) {
+            throw new \InvalidArgumentException("Invalid letter '{$letter}'");
+        }
+
         return $this->letterToCommandMap[$letter];
     }
 }
