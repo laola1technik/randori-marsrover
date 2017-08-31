@@ -18,11 +18,10 @@ Sounds
 Next Time:
 -)  Buchstaben zu Kommandos -> Prio 1
     Move the rover forward/backward ('f','b').
-    ● Turn the rover left/right ('l','r').
+    ●Turn the rover left/right ('l','r').
     You are given the initial starting point (x,y) of a rover and
     the direction ('N','S','E','W') it is facing.
     Parser: Input to Kommando/ KommandoListe
-
 
 
 -) Event Logging / Event List
