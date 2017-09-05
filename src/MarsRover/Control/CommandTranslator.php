@@ -20,9 +20,19 @@ class CommandTranslator
         ];
     }
 
-    public function translate($letter)
+    public function translate($letters)
     {
-        if(array_key_exists($letter, $this->letterToCommandMap) === false) {
+        $commands = [];
+        $splittedLetters = str_split($letters);
+        foreach ($splittedLetters as $letter) {
+            $commands[] = $this->translateSingle($letter);
+        }
+        return $commands;
+    }
+
+    private function translateSingle($letter)
+    {
+        if (array_key_exists($letter, $this->letterToCommandMap) === false) {
             throw new \InvalidArgumentException("Invalid letter '{$letter}'");
         }
 

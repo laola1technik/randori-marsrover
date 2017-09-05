@@ -25,8 +25,9 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldTranslateLetterIntoCommand($letter, $expectedCommand)
     {
-        $command = $this->commandTranslator->translate($letter);
-        $this->assertInstanceOf($expectedCommand, $command);
+        $commands = $this->commandTranslator->translate($letter);
+        $this->assertCount(1, $commands);
+        $this->assertInstanceOf($expectedCommand, $commands[0]);
     }
 
     public function lettersAndTranslatedCommands()
@@ -48,4 +49,18 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
         $invalidLetter = 'p';
         $this->commandTranslator->translate($invalidLetter);
     }
+
+    /**
+     * @test
+     */
+    public function shouldTranslateMultipleLettersIntoCommands()
+    {
+        $multipleLetters = 'fr';
+        $commands = $this->commandTranslator->translate($multipleLetters);
+        $this->assertEquals(
+            [new ForwardCommand, new RightCommand],
+            $commands
+        );
+    }
+
 }
