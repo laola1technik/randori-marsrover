@@ -3,6 +3,10 @@ namespace MarsRover\Environment;
 
 use MarsRover\Environment\Directions\Backward;
 use MarsRover\Environment\Directions\Forward;
+use MarsRover\Environment\Orientations\East;
+use MarsRover\Environment\Orientations\North;
+use MarsRover\Environment\Orientations\South;
+use MarsRover\Environment\Orientations\West;
 
 class NavigationTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,7 +33,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
     {
         $navigation = new Navigation($this->map, new Position(0, 0), new Compass(new East()));
         $orientation = $navigation->getOrientation();
-        $this->assertInstanceOf('\MarsRover\Environment\East', $orientation);
+        $this->assertInstanceOf(East::class, $orientation);
     }
 
     /**
@@ -42,7 +46,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $navigation->turnedRight();
 
         $orientation = $navigation->getOrientation();
-        $this->assertInstanceOf('\MarsRover\Environment\East', $orientation);
+        $this->assertInstanceOf(East::class, $orientation);
     }
 
     /**
@@ -55,7 +59,7 @@ class NavigationTest extends \PHPUnit_Framework_TestCase
         $navigation->turnedLeft();
 
         $orientation = $navigation->getOrientation();
-        $this->assertInstanceOf('\MarsRover\Environment\West', $orientation);
+        $this->assertInstanceOf(West::class, $orientation);
     }
 
     // ~~~~ POSITIONS ~~~~

@@ -1,5 +1,5 @@
 <?php
-namespace MarsRover\Environment;
+namespace MarsRover\Environment\Orientations;
 
 /**
  * Cardinal direction / Orientation the rover is facing.

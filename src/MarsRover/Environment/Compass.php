@@ -2,6 +2,12 @@
 
 namespace MarsRover\Environment;
 
+use MarsRover\Environment\Orientations\East;
+use MarsRover\Environment\Orientations\North;
+use MarsRover\Environment\Orientations\Orientation;
+use MarsRover\Environment\Orientations\South;
+use MarsRover\Environment\Orientations\West;
+
 class Compass
 {
     /** @var Orientation[] */

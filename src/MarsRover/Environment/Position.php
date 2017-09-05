@@ -2,6 +2,7 @@
 namespace MarsRover\Environment;
 
 use MarsRover\Environment\Directions\Direction;
+use MarsRover\Environment\Orientations\Vector;
 
 class Position
 {
