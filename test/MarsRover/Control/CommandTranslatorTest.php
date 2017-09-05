@@ -8,14 +8,24 @@ use MarsRover\Control\Commands\RightCommand;
 
 class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var CommandTranslator */
+    private $commandTranslator;
+
+    /**
+     * @before
+     */
+    public function setupCommandTranslator()
+    {
+        $this->commandTranslator = new CommandTranslator();
+    }
+
     /**
      * @test
      * @dataProvider lettersAndTranslatedCommands
      */
     public function shouldTranslateLetterIntoCommand($letter, $expectedCommand)
     {
-        $commandTranslator = new CommandTranslator();
-        $command = $commandTranslator->translate($letter);
+        $command = $this->commandTranslator->translate($letter);
         $this->assertInstanceOf($expectedCommand, $command);
     }
 
@@ -36,7 +46,6 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
     public function shouldFailIfUnableToTranslateLetter()
     {
         $invalidLetter = 'p';
-        $commandTranslator = new CommandTranslator();
-        $commandTranslator->translate($invalidLetter);
+        $this->commandTranslator->translate($invalidLetter);
     }
 }
