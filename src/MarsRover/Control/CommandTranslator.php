@@ -22,6 +22,10 @@ class CommandTranslator
 
     public function translate($letters)
     {
+        if (!is_string($letters)) {
+            throw new \InvalidArgumentException("Argument 1 passed to translate() must be of the type string");
+        }
+
         if (empty($letters)) {
             return [];
         }

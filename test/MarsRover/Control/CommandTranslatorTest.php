@@ -72,4 +72,14 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($commands);
     }
 
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function shouldFailOnWrongType()
+    {
+        $invalidArgument = [1];
+        $this->commandTranslator->translate($invalidArgument);
+    }
+
 }
