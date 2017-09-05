@@ -1,6 +1,9 @@
 <?php
 namespace MarsRover\Environment;
 
+use MarsRover\Environment\Directions\Backward;
+use MarsRover\Environment\Directions\Forward;
+
 class NavigationTest extends \PHPUnit_Framework_TestCase
 {
     const MAP_WIDTH = 15;

@@ -1,6 +1,8 @@
 <?php
 namespace MarsRover\Environment;
 
+use MarsRover\Environment\Directions\Direction;
+
 class Position
 {
     private $x;

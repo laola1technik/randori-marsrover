@@ -1,5 +1,5 @@
 <?php
-namespace MarsRover\Environment;
+namespace MarsRover\Environment\Directions;
 
 interface Direction
 {

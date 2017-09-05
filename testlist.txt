@@ -6,7 +6,6 @@ Hindernisse
     - erkennen, Bewegung abbrechen
 Kommando
 Controlunit
-Translator Kommando -> Bewegung
 Eingabe als Text
 ---
 Sprites
@@ -16,11 +15,6 @@ Sounds
 
 
 Next Time:
--)  Buchstaben zu Kommandos -> Prio 1
-    Parser: Input to Kommando/ KommandoListe
-
-
 -) Event Logging / Event List
--) Namespace Control
 -) Konstruktor vom Rover: start point, initial direction
 -) Exception wenn start punkt ein obstacle ist
