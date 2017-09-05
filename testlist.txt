@@ -20,3 +20,4 @@ Next Time:
 -) Exception wenn start punkt ein obstacle ist
 -) Commands sind noch empty
 -) Rover fehlt
+-) Class Diagramm ergänzen
