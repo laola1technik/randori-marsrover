@@ -26,12 +26,7 @@ class CommandTranslator
             return [];
         }
 
-        $commands = [];
-        $splitLetters = str_split($letters);
-        foreach ($splitLetters as $letter) {
-            $commands[] = $this->translateSingle($letter);
-        }
-        return $commands;
+        return array_map([$this, 'translateSingle'], str_split($letters));
     }
 
     private function translateSingle($letter)
