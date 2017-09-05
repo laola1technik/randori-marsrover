@@ -63,4 +63,13 @@ class CommandTranslatorTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     */
+    public function shouldReturnEmptyListOfCommandsIfNoLetterGiven()
+    {
+        $commands = $this->commandTranslator->translate('');
+        $this->assertEmpty($commands);
+    }
+
 }

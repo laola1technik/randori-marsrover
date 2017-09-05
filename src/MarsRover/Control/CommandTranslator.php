@@ -22,9 +22,13 @@ class CommandTranslator
 
     public function translate($letters)
     {
+        if (empty($letters)) {
+            return [];
+        }
+
         $commands = [];
-        $splittedLetters = str_split($letters);
-        foreach ($splittedLetters as $letter) {
+        $splitLetters = str_split($letters);
+        foreach ($splitLetters as $letter) {
             $commands[] = $this->translateSingle($letter);
         }
         return $commands;
