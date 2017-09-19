@@ -1,6 +1,9 @@
 <?php
 namespace MarsRover\Control;
 
+use MarsRover\Control\Commands\BackwardCommand;
+use MarsRover\Control\Commands\ForwardCommand;
+use MarsRover\Environment\Directions\Backward;
 use MarsRover\Environment\Directions\Forward;
 use MarsRover\Environment\Navigation;
 
@@ -15,6 +18,12 @@ class ControlUnit
 
     public function execute($commands)
     {
-        $this->navigation->moved(new Forward());
+        foreach ($commands as $command) {
+            if ($command instanceof ForwardCommand) {
+                $this->navigation->moved(new Forward());
+            } elseif ($command instanceof BackwardCommand) {
+                $this->navigation->moved(new Backward());
+            }
+        }
     }
 }
