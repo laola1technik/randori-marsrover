@@ -1,7 +1,11 @@
 <?php
 namespace MarsRover\Control\Commands;
 
-class BackwardCommand
-{
+use MarsRover\Control\ControlUnit;
 
+class BackwardCommand implements Command
+{
+    public function execute(ControlUnit $controlUnit){
+        $controlUnit->moveBackward();
+    }
 }
