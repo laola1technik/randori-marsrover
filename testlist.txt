@@ -1,23 +1,12 @@
-Anwendung
-Marsrover
+Anwendung = Marsrover
 ---
-TODO: überlegen Verantwortlichkeit von parsen, aktion selber durchführen, etc...
 Hindernisse
     - erkennen, Bewegung abbrechen
-Kommando
-Controlunit
 Eingabe als Text
----
-Sprites
-Animations
-Sounds
-................
 
 
 Next Time:
 -) Event Logging / Event List
 -) Konstruktor vom Rover: start point, initial direction
 -) Exception wenn start punkt ein obstacle ist
--) Commands sind noch empty
--) Rover fehlt
 -) Class Diagramm ergänzen
