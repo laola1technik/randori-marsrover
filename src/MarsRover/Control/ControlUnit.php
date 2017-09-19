@@ -6,6 +6,9 @@ use MarsRover\Environment\Directions\Backward;
 use MarsRover\Environment\Directions\Forward;
 use MarsRover\Environment\Navigation;
 
+/**
+ * Offers all available actions the rover can perform.
+ */
 class ControlUnit
 {
     private $navigation;

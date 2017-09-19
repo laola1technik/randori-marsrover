@@ -13,6 +13,9 @@ class Navigation
      * @var Position
      */
     private $position;
+    /**
+     * @var Compass
+     */
     private $compass;
 
     public function __construct($map, $initialPosition, $compass)

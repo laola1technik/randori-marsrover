@@ -6,6 +6,9 @@ use MarsRover\Control\Commands\ForwardCommand;
 use MarsRover\Control\Commands\LeftCommand;
 use MarsRover\Control\Commands\RightCommand;
 
+/**
+ * Takes the character array of commands and maps them to executable command objects.
+ */
 class CommandTranslator
 {
     private $letterToCommandMap;
