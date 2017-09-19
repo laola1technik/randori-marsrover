@@ -2,6 +2,7 @@
 namespace MarsRover\Control;
 
 use MarsRover\Control\Commands\ForwardCommand;
+use MarsRover\Environment\Directions\Forward;
 
 class ControlUnitTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,6 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function setupControlUnit()
     {
-        $this->controlUnit = new ControlUnit();
     }
 
     /**
@@ -21,8 +21,14 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveForwardOnForwardCommand()
     {
-        $this->controlUnit->execute([new ForwardCommand()]);
+        $navigation = $this->getMock('\MarsRover\Environment\Navigation', ['moved'], [null, null, null]);
+        $navigation->expects($this->once())
+            ->method('moved')
+            ->with($this->equalTo(new Forward()));
 
-        //TODO Expect Navigation. Move Forward has been called
+        $this->controlUnit = new ControlUnit($navigation);
+        $this->controlUnit->execute([new ForwardCommand()]);
     }
+
+
 }
