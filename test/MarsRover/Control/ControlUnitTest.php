@@ -5,9 +5,12 @@ use MarsRover\Control\Commands\BackwardCommand;
 use MarsRover\Control\Commands\ForwardCommand;
 use MarsRover\Environment\Directions\Backward;
 use MarsRover\Environment\Directions\Forward;
+use MarsRover\Environment\Navigation;
 
 class ControlUnitTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var  Navigation | \PHPUnit_Framework_MockObject_MockObject */
+    private $navigation;
     /** @var ControlUnit */
     private $controlUnit;
 
@@ -16,6 +19,8 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function setupControlUnit()
     {
+        $this->navigation = $this->getMock(Navigation::class, ['moved'], [null, null, null]);
+        $this->controlUnit = new ControlUnit($this->navigation);
     }
 
     /**
@@ -23,12 +28,10 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveForwardOnForwardCommand()
     {
-        $navigation = $this->getMock('\MarsRover\Environment\Navigation', ['moved'], [null, null, null]);
-        $navigation->expects($this->once())
+        $this->navigation->expects($this->once())
             ->method('moved')
             ->with($this->equalTo(new Forward()));
 
-        $this->controlUnit = new ControlUnit($navigation);
         $this->controlUnit->execute([new ForwardCommand()]);
     }
 
@@ -37,12 +40,22 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveBackwardOnBackwardCommand()
     {
-        $navigation = $this->getMock('\MarsRover\Environment\Navigation', ['moved'], [null, null, null]);
-        $navigation->expects($this->once())
+        $this->navigation->expects($this->once())
             ->method('moved')
             ->with($this->equalTo(new Backward()));
 
-        $this->controlUnit = new ControlUnit($navigation);
         $this->controlUnit->execute([new BackwardCommand()]);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldMoveBackwardTwiceOnTwoBackwardCommands()
+    {
+        $this->navigation->expects($this->exactly(2))
+            ->method('moved')
+            ->with($this->equalTo(new Backward()));
+
+        $this->controlUnit->execute([new BackwardCommand(), new BackwardCommand()]);
     }
 }

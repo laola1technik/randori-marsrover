@@ -16,7 +16,7 @@ class ControlUnit
         $this->navigation = $navigation;
     }
 
-    public function execute($commands)
+    public function execute(array $commands)
     {
         foreach ($commands as $command) {
             if ($command instanceof ForwardCommand) {
