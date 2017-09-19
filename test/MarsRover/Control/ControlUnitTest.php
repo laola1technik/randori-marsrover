@@ -3,6 +3,7 @@ namespace MarsRover\Control;
 
 use MarsRover\Control\Commands\BackwardCommand;
 use MarsRover\Control\Commands\ForwardCommand;
+use MarsRover\Control\Commands\RightCommand;
 use MarsRover\Environment\Directions\Backward;
 use MarsRover\Environment\Directions\Forward;
 use MarsRover\Environment\Navigation;
@@ -19,7 +20,7 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function setupControlUnit()
     {
-        $this->navigation = $this->getMock(Navigation::class, ['moved'], [null, null, null]);
+        $this->navigation = $this->getMock(Navigation::class, ['moved', 'turnedRight'], [null, null, null]);
         $this->controlUnit = new ControlUnit($this->navigation);
     }
 
@@ -57,5 +58,16 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(new Backward()));
 
         $this->controlUnit->execute([new BackwardCommand(), new BackwardCommand()]);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldTurnRightOnRightCommand()
+    {
+        $this->navigation->expects($this->once())
+            ->method('turnedRight');
+
+        $this->controlUnit->execute([new RightCommand()]);
     }
 }

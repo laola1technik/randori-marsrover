@@ -3,6 +3,7 @@ namespace MarsRover\Control;
 
 use MarsRover\Control\Commands\BackwardCommand;
 use MarsRover\Control\Commands\ForwardCommand;
+use MarsRover\Control\Commands\RightCommand;
 use MarsRover\Environment\Directions\Backward;
 use MarsRover\Environment\Directions\Forward;
 use MarsRover\Environment\Navigation;
@@ -20,9 +21,12 @@ class ControlUnit
     {
         foreach ($commands as $command) {
             if ($command instanceof ForwardCommand) {
+                // start the engine
                 $this->navigation->moved(new Forward());
             } elseif ($command instanceof BackwardCommand) {
                 $this->navigation->moved(new Backward());
+            } elseif ($command instanceof RightCommand) {
+                $this->navigation->turnedRight();
             }
         }
     }
