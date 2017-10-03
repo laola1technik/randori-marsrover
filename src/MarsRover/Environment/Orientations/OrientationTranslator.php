@@ -3,8 +3,20 @@ namespace MarsRover\Environment\Orientations;
 
 class OrientationTranslator
 {
-    public function translate($orientationString)
+    private $orientationByLetter;
+
+    public function __construct()
     {
-        return new North();
+        $this->orientationByLetter = [
+            "N" => new North(),
+            "E" => new East(),
+            "S" => new South(),
+            "W" => new West()
+        ];
+    }
+
+    public function translate($orientationLetter)
+    {
+        return $this->orientationByLetter[$orientationLetter];
     }
 }
