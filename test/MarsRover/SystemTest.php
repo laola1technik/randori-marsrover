@@ -19,5 +19,17 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new East(), $marsRover->getOrientation());
     }
 
+    /**
+     * @test
+     */
+    public function shouldStopInFrontOfObstacle()
+    {
+        $marsRover = new MarsRover([1, 2], 'E');
+
+        $marsRover->execute("bbbbb");
+
+        $this->assertEquals(new Position(0, 2), $marsRover->getPosition());
+    }
+    // Todo: $this->assertEquals(['Obstacle at (99/2)!'], $marsRover->getNotifications());
 
 }

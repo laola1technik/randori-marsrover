@@ -23,7 +23,7 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
     {
         $this->navigation = $this->getMock(
             Navigation::class,
-            ['moved', 'turnedRight', 'turnedLeft'],
+            ['moved', 'turnedRight', 'turnedLeft', 'canMove'],
             [null, null, null]
         );
         $this->controlUnit = new ControlUnit($this->navigation);
@@ -46,6 +46,9 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveBackwardOnBackwardCommand()
     {
+        $this->navigation->expects($this->any())
+            ->method('canMove')
+            ->willReturn(true);
         $this->navigation->expects($this->once())
             ->method('moved')
             ->with($this->equalTo(new Backward()));
@@ -58,6 +61,9 @@ class ControlUnitTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldMoveBackwardTwiceOnTwoBackwardCommands()
     {
+        $this->navigation->expects($this->any())
+            ->method('canMove')
+            ->willReturn(true);
         $this->navigation->expects($this->exactly(2))
             ->method('moved')
             ->with($this->equalTo(new Backward()));

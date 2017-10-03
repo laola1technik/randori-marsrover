@@ -28,6 +28,7 @@ class MarsRover
         $orientation = $orientationTranslator->translate($initialOrientation);
 
         $map = new Map(100, 100);
+        $map->addObstacle(new Position(99, 2));
         $position = new Position($initialPosition[0], $initialPosition[1]);
         $compass = new Compass($orientation);
         return new Navigation($map, $position, $compass);
@@ -47,5 +48,10 @@ class MarsRover
     public function getOrientation()
     {
         return $this->navigation->getOrientation();
+    }
+
+    public function getNotifications()
+    {
+        //Todo: get notifications from control unit
     }
 }

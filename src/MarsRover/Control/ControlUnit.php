@@ -12,6 +12,7 @@ use MarsRover\Environment\Navigation;
 class ControlUnit
 {
     private $navigation;
+    private $cancel;
 
     public function __construct(Navigation $navigation)
     {
@@ -23,8 +24,12 @@ class ControlUnit
      */
     public function execute(array $commands)
     {
+        $this->cancel = false;
         foreach ($commands as $command) {
             $command->execute($this);
+            if ($this->cancel) {
+                break;
+            }
         }
     }
 
@@ -36,7 +41,11 @@ class ControlUnit
 
     public function moveBackward()
     {
-        $this->navigation->moved(new Backward());
+        if ($this->navigation->canMove(new Backward())) {
+            $this->navigation->moved(new Backward());
+        } else {
+            $this->cancel = true;
+        }
     }
 
     public function turnRight()
