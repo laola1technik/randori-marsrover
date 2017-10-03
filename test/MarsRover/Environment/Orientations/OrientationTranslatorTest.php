@@ -5,13 +5,21 @@ class OrientationTranslatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
+     * @dataProvider orientationStringAndClass
      */
-    public function shouldTranslateNtoNorth()
+    public function shouldTranslateNtoNorth($orientationString, $orientationClass)
     {
         $orientationTranslator = new OrientationTranslator();
 
-        $orientation = $orientationTranslator->translate('N');
+        $orientation = $orientationTranslator->translate($orientationString);
 
-        $this->assertInstanceOf(North::class, $orientation);
+        $this->assertInstanceOf($orientationClass, $orientation);
+    }
+
+    public function orientationStringAndClass()
+    {
+        return [
+          ["N", North::class]
+        ];
     }
 }
