@@ -1,12 +1,4 @@
-Anwendung = Marsrover
----
-Hindernisse
-    - erkennen, Bewegung abbrechen
-Eingabe als Text
-
-
-Next Time:
+Open:
 -) Event Logging / Event List
--) Konstruktor vom Rover: start point, initial direction
 -) Exception wenn start punkt ein obstacle ist
 -) Class Diagramm ergänzen
