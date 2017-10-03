@@ -13,20 +13,24 @@ class MarsRover
 {
     private $navigation;
     private $commandTranslator;
-
     private $controlUnit;
 
     public function __construct(array $initialPosition, $initialOrientation)
     {
-        $orientationTranslator = new OrientationTranslator();
-        $this->navigation = new Navigation(
-            new Map(100, 100),
-            new Position($initialPosition[0], $initialPosition[1]),
-            new Compass($orientationTranslator->translate($initialOrientation))
-        );
+        $this->navigation = $this->createNavigation($initialPosition, $initialOrientation);
         $this->commandTranslator = new CommandTranslator();
         $this->controlUnit = new ControlUnit($this->navigation);
+    }
 
+    private function createNavigation(array $initialPosition, $initialOrientation)
+    {
+        $orientationTranslator = new OrientationTranslator();
+        $orientation = $orientationTranslator->translate($initialOrientation);
+
+        $map = new Map(100, 100);
+        $position = new Position($initialPosition[0], $initialPosition[1]);
+        $compass = new Compass($orientation);
+        return new Navigation($map, $position, $compass);
     }
 
     public function execute($commandsString)
