@@ -1,5 +1,9 @@
 # MarsRover - PHP
-The language is PHP with [PHPUnit](https://phpunit.de/).
+
+This is the [Mars Rover Kata](http://kata-log.rocks/mars-rover-kata)
+in PHP with [PHPUnit](https://phpunit.de/),
+done in a Randori-styled [Coding Dojo](http://codingdojo.org/WhatIsCodingDojo/), 
+13 sessions a 2 hours.
 
 ## Installation
 * This package requires [Composer](https://getcomposer.org/)
